@@ -1,8 +1,27 @@
 <template>
-    <div class="">
-      {{$store.state.headMenus}}
-      <Menu mode='vertical' ></Menu>
+  <div class="web-main head">
+    <!--logo-->
+    <div class="head-logo">
+      <img src="../../assets/img/logo.jpg">
     </div>
+
+    <div class="head-menus">
+      <!--菜单-->
+      <ul>
+        <li :class="$route.meta.parent===menu.parent?'active':''" @click="goToPath(menu.name)"
+            v-for="(menu,index) in $store.state.headMenus" :key="index">
+          <icon type="home"></icon>
+          <span class="head-menu-name">{{menu.menuName}}</span>
+        </li>
+      </ul>
+    </div>
+
+    <!--个人信息-->
+    <div class="head-info test">
+      <img src="../../assets/img/avatar.jpg">
+      <!--<icon type="home"></icon>退出-->
+    </div>
+  </div>
 </template>
 <script>
   export default {
@@ -17,7 +36,9 @@
       //计算属性将被混入到 Vue 实例中。所有 getter 和 setter 的 this 上下文自动地绑定为 Vue 实例。计算属性的结果会被缓存，除非依赖的响应式属性变化才会重新计算。注意，如果实例范畴之外的依赖 (比如非响应式的 not reactive) 是不会触发计算属性更新的。
     },
     methods: {
-      //methods 将被混入到 Vue 实例中。可以直接通过 VM 实例访问这些方法，或者在指令表达式中使用。方法中的 this 自动绑定为 Vue 实例。
+      goToPath(key){
+        this.$router.push({name: key});
+      }
     },
     watch: {
       //一个对象，键是需要观察的表达式，值是对应回调函数。值也可以是方法名，或者包含选项的对象。Vue 实例将会在实例化时调用$watch()，遍历 watch 对象的每一个属性。

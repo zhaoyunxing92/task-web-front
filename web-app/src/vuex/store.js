@@ -14,7 +14,7 @@ const store = new Vuex.Store({
     appMenus: [],//app头部菜单
     currentOrgId: '',//当前组织
     menuTheme: '', // 菜单主题
-    headMenus: [], //头部菜单
+    orgMenuList: [], //组织菜单
     workbenchMenu: [], //工作台菜单
     settingMenu: [],//设置菜单
     pageOpenedList: [],   //默认打开页面],  // 面包屑数组
@@ -38,6 +38,7 @@ const store = new Vuex.Store({
         if (item.children.length > 0) {
 
           item.children.forEach(headMenu => {
+            console.log(headMenu);
             //头部导航
             if (!headMenu.hide) {
               headMenus.push({
@@ -45,8 +46,7 @@ const store = new Vuex.Store({
                 icon: headMenu.meta.icon,
                 menuName: headMenu.meta.menuName,
                 right: headMenu.meta.right,
-                iconColor: headMenu.meta.iconColor,
-                parent: headMenu.meta.parent
+                iconColor: headMenu.meta.iconColor
               });
 
             }
@@ -78,7 +78,7 @@ const store = new Vuex.Store({
 
 
       });
-      state.headMenus = headMenus;
+      state.orgMenuList = headMenus;
       state.workbenchMenu = workbenchMenus;
       state.settingMenu = settingMenus;
       // state.orgs.push({'name':'test'})

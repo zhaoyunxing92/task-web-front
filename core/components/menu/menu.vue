@@ -7,7 +7,6 @@
 </template>
 <script>
   const prefixCls = 'vui-menu';
-  import oneOf from '../../utils/assets'
   import Icon from '../icon'
   export default {
     name: "menu",

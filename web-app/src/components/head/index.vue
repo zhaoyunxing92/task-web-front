@@ -1,23 +1,14 @@
 <template>
-  <div class="web-main">
-    <!--头部-->
-    <TaskWebHead/>
-
-    <!--内容-->
-    <div class="content">
-      <router-view/>
+    <div class="">
+      <!--<Menu mode='vertical' ></Menu>-->
     </div>
-
-  </div>
 </template>
 <script>
-  import TaskWebHead from '../components/head/index';
   export default {
-    name: "task-web-main",
+    name: "task-web-head",
     data () {//数据
       return {}
     },
-    components: {TaskWebHead},
     props: {
       //props 可以是数组或对象，用于接收来自父组件的数据。props 可以是简单的数组，或者使用对象作为替代，对象允许配置高级选项，如类型检测、自定义校验和设置默认值。
     },
@@ -34,6 +25,7 @@
       //在实例初始化之后，数据观测(data observer) 和 event/watcher 事件配置之前被调用
     },
     created(){
+      console.log(this.$store.state.orgMenuList)
       //实例已经创建完成之后被调用。在这一步，实例已完成以下的配置：数据观测(data observer)，属性和方法的运算，watch/event 事件回调。然而，挂载阶段还没开始，$el 属性目前不可见
     },
     mounted(){
@@ -53,3 +45,7 @@
     }
   }
 </script>
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style>
+
+</style>

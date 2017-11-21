@@ -1,14 +1,11 @@
 <template>
-  <div class="web-main">
-    <!--头部-->
-    <TaskWebHead/>
+     <div class="web-main">
+       <!--头部-->
+       <TaskWebHead/>
 
-    <!--内容-->
-    <div class="content">
-      <router-view/>
-    </div>
-
-  </div>
+       <!--内容-->
+       <router-view/>
+     </div>
 </template>
 <script>
   import TaskWebHead from '../components/head/index';
@@ -53,3 +50,7 @@
     }
   }
 </script>
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+
+</style>

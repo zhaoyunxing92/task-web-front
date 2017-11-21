@@ -1,0 +1,58 @@
+/**
+ * @author :  sunny
+ * @date : 2017.11.21 12:41
+ * @description :
+ */
+.web-main {
+  //头部
+  .head {
+    background-color: #fff;
+    height: 40px;
+    line-height: 40px;
+    width: 100%;
+    clear: both;
+    div {
+      display: inline-block;
+      height: inherit;
+      line-height: inherit;
+      overflow: hidden;
+    }
+    .head-logo {
+      width: 25%;
+      > img { //logo
+        height: inherit;
+        line-height: inherit;
+        margin-left: 10%;
+      }
+    }
+    .head-menus { //菜单
+      li {
+        height: 40px;
+        line-height: 40px;
+        float: left;
+        width: 100px;
+        //transition:fill .4s ease-in-out;
+        &:hover {
+          i {
+            fill: @link-hover-color;
+          }
+          color: @link-hover-color;
+          cursor: pointer;
+         // border-bottom: solid 2px @link-hover-color;
+        }
+      }
+    }
+    .head-info { //用户信息
+      //clear: both;
+      float: right;
+      margin-right: 20px;
+    }
+  }
+  //内容
+  .content {
+    margin:10px auto;
+    background-color: #fff;
+    width: 99%;
+    border-top:solid 1px #ccc;
+  }
+}

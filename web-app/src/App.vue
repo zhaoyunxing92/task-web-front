@@ -12,5 +12,4 @@
 
 <style lang="less" type="text/less">
   @import "../../core/style/index";
-  @import './assets/style/index';
 </style>

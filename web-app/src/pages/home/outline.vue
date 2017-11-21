@@ -1,23 +1,14 @@
 <template>
-  <div class="web-main">
-    <!--头部-->
-    <TaskWebHead/>
-
-    <!--内容-->
-    <div class="content">
-      <router-view/>
-    </div>
-
-  </div>
+     <div>
+       概览
+     </div>
 </template>
 <script>
-  import TaskWebHead from '../components/head/index';
   export default {
-    name: "task-web-main",
+    name: "task-outline",
     data () {//数据
       return {}
     },
-    components: {TaskWebHead},
     props: {
       //props 可以是数组或对象，用于接收来自父组件的数据。props 可以是简单的数组，或者使用对象作为替代，对象允许配置高级选项，如类型检测、自定义校验和设置默认值。
     },
@@ -53,3 +44,7 @@
     }
   }
 </script>
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+
+</style>
