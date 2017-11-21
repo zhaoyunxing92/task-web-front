@@ -27,19 +27,8 @@
     }
     .head-menus { //菜单
       li {
-        height: 40px;
-        line-height: 40px;
         float: left;
         width: 100px;
-        //transition:fill .4s ease-in-out;
-        &:hover {
-          i {
-            fill: @link-hover-color;
-          }
-          color: @link-hover-color;
-          cursor: pointer;
-         // border-bottom: solid 2px @link-hover-color;
-        }
       }
     }
     .head-info { //用户信息
@@ -50,9 +39,54 @@
   }
   //内容
   .content {
-    margin:10px auto;
-    background-color: #fff;
+    margin: 10px auto;
     width: 99%;
-    border-top:solid 1px #ccc;
+    .title {
+      width: 100%;
+      line-height: 50px;
+      height: 50px;
+      border-bottom: solid 1px #ccc;
+      padding-left: 10px;
+      overflow: hidden;
+      font-size: 16px;
+    }
+    //内容左边卡片
+    .content-card-left {
+      background-color: #fff;
+      width: 15%;
+      float: left;
+      border: solid 1px #ccc;
+      text-align: center;
+      .card-left-menu { //左边菜单
+        li {
+          line-height: 50px;
+          height: 50px;
+          border-bottom: solid 1px #f1f1f1;
+        }
+      }
+    }
+    //内容右边卡片
+    .content-card-right {
+      float: right;
+      width: 85%;
+      border: solid 1px #ccc;
+      background-color: #fff;
+      .right-content {
+        padding: 10px;
+      }
+    }
+  }
+
+}
+
+li {
+  height: 40px;
+  line-height: 40px;
+  &:hover {
+    i {
+      fill: @link-hover-color;
+    }
+    color: @link-hover-color;
+    cursor: pointer;
   }
 }

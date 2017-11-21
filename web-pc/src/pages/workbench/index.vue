@@ -1,8 +1,22 @@
 <template>
-  <div class="web-main">
-    <!--头部-->
-    <!--内容-->
-    <router-view/>
+  <div>
+    <div class="content-card-left">
+      <div class="title">{{$route.meta.title}}</div>
+
+      <div class="card-left-menu">
+        <ul>
+          <li class="active" @click="goToPath(menu.name)"
+              v-for="(menu,index) in $store.state.headMenus" :key="index">
+            <icon type="home"></icon>
+            <span class="head-menu-name">{{menu.menuName}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="content-card-right">
+      <router-view/>
+    </div>
+
   </div>
 </template>
 <script>

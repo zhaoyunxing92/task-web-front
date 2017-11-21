@@ -1,6 +1,10 @@
 <template>
   <div>
-    指派个我的
+    <div class="title">指派给我</div>
+    <div class="right-content">
+      sdfdssdf是的范德萨 <br/>
+      sdfdssdf是的范德萨 <br/>
+    </div>
   </div>
 </template>
 <script>
