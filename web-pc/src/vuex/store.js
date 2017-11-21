@@ -11,12 +11,11 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state: { //state 定义了应用状态的数据结构，同样可以在这里设置默认的初始状态。
     orgs: [],
-    appMenus: [],//app头部菜单
     currentOrgId: '',//当前组织
     menuTheme: '', // 菜单主题
     headMenus: [], //头部菜单
-    workbenchMenu: [], //工作台菜单
-    settingMenu: [],//设置菜单
+    workbenchMenus: [], //工作台菜单
+    settingMenus: [],//设置菜单
     pageOpenedList: [],   //默认打开页面],  // 面包屑数组
     currentPageName: '',//当前展开的菜单名称
     openedSubmenuArr: [],  // 要展开的菜单数组
@@ -51,27 +50,29 @@ const store = new Vuex.Store({
 
             }
             //左侧菜单 ---工作台
-            // if (headMenu.workbenchMenu && headMenu.children.length > 0) {
-            //   headMenu.children.forEach(leftMenu => {
-            //     workbenchMenus.push({
-            //       name: leftMenu.name,
-            //       icon: leftMenu.meta.icon,
-            //       menuName: leftMenu.meta.menuName,
-            //       iconColor: leftMenu.meta.iconColor
-            //     });
-            //   })
-            // }
-            // //左侧菜单 ---setting
-            // if (headMenu.settingMenu && headMenu.children.length > 0) {
-            //   headMenu.children.forEach(leftMenu => {
-            //     settingMenus.push({
-            //       name: leftMenu.name,
-            //       icon: leftMenu.meta.icon,
-            //       menuName: leftMenu.meta.menuName,
-            //       iconColor: leftMenu.meta.iconColor
-            //     });
-            //   })
-            // }
+            if (headMenu.workbenchMenu && headMenu.children.length > 0) {
+              headMenu.children.forEach(leftMenu => {
+                workbenchMenus.push({
+                  name: leftMenu.name,
+                  icon: leftMenu.meta.icon,
+                  menuName: leftMenu.meta.menuName,
+                  iconColor: leftMenu.meta.iconColor,
+                  parent: headMenu.meta.parent
+                });
+              })
+            }
+            //左侧菜单 ---setting
+            if (headMenu.settingMenu && headMenu.children.length > 0) {
+              headMenu.children.forEach(leftMenu => {
+                settingMenus.push({
+                  name: leftMenu.name,
+                  icon: leftMenu.meta.icon,
+                  menuName: leftMenu.meta.menuName,
+                  iconColor: leftMenu.meta.iconColor,
+                  parent: headMenu.meta.parent
+                });
+              })
+            }
 
           });
         }
@@ -79,8 +80,8 @@ const store = new Vuex.Store({
 
       });
       state.headMenus = headMenus;
-      state.workbenchMenu = workbenchMenus;
-      state.settingMenu = settingMenus;
+      state.workbenchMenus = workbenchMenus;
+      state.settingMenus = settingMenus;
       // state.orgs.push({'name':'test'})
     }
   },

@@ -1,7 +1,8 @@
 <template>
-      <div>
-        团队信息
-      </div>
+  <div class="right-content">
+    sdfdssdf是的范德萨 <br/>
+    sdfdssdf是的范德萨 <br/>
+  </div>
 </template>
 <script>
   export default {

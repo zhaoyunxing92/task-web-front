@@ -1,1 +1,6 @@
-export default '<svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><path d="M25.1,12v10.9H36v2.2H25.1V36h-2.2V25.1H12v-2.2h10.9V12H25.1z"></path></svg>';
+/**
+ * @author :  sunny
+ * @date : 2017.11.20 00:42
+ * @description :
+ */
+export default '<svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M992 384H640V32c0-17.672-14.328-32-32-32h-192c-17.672 0-32 14.328-32 32v352H32c-17.672 0-32 14.328-32 32v192c0 17.672 14.328 32 32 32h352v352c0 17.672 14.328 32 32 32h192c17.672 0 32-14.328 32-32V640h352c17.672 0 32-14.328 32-32v-192c0-17.672-14.328-32-32-32z"></path></svg>';

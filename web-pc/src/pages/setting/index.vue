@@ -1,5 +1,27 @@
 <template>
-  <router-view/>
+  <div>
+    <div class="content-card-left">
+      <div class="title">团队设置</div>
+
+      <div class="card-left-menu">
+        <ul>
+          <li :class=" $route.name===menu.name?'right-active':'' " @click="goToPath(menu.name)"
+              v-for="(menu,index) in $store.state.settingMenus" :key="index">
+            <icon :type="menu.icon"></icon>
+            <span class="head-menu-name">{{menu.menuName}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="content-card-right">
+      <div class="title">
+        <icon :type="$route.meta.icon"/>
+        <span>{{$route.meta.title}}</span>
+      </div>
+      <router-view/>
+    </div>
+
+  </div>
 </template>
 <script>
   export default {
@@ -14,10 +36,9 @@
       //计算属性将被混入到 Vue 实例中。所有 getter 和 setter 的 this 上下文自动地绑定为 Vue 实例。计算属性的结果会被缓存，除非依赖的响应式属性变化才会重新计算。注意，如果实例范畴之外的依赖 (比如非响应式的 not reactive) 是不会触发计算属性更新的。
     },
     methods: {
-      //methods 将被混入到 Vue 实例中。可以直接通过 VM 实例访问这些方法，或者在指令表达式中使用。方法中的 this 自动绑定为 Vue 实例。
-    },
-    watch: {
-      //一个对象，键是需要观察的表达式，值是对应回调函数。值也可以是方法名，或者包含选项的对象。Vue 实例将会在实例化时调用$watch()，遍历 watch 对象的每一个属性。
+      goToPath(key){
+        this.$router.push({name: key});
+      }
     },
     beforeCreate(){
       //在实例初始化之后，数据观测(data observer) 和 event/watcher 事件配置之前被调用

@@ -10,7 +10,7 @@
       <ul>
         <li :class="$route.meta.parent===menu.parent?'active':''" @click="goToPath(menu.name)"
             v-for="(menu,index) in $store.state.headMenus" :key="index">
-          <icon type="home"></icon>
+          <icon :type="menu.icon"></icon>
           <span class="head-menu-name">{{menu.menuName}}</span>
         </li>
       </ul>

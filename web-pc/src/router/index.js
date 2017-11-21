@@ -81,34 +81,33 @@ export const appMain = [
         path: '/workbench',
         name: 'app-workbench',
         workbenchMenu: true,
-        meta: {title: '工作台', icon: 'home', menuName: '工作台',parent: 'app-workbench'},
+        meta: {title: '工作台', icon: 'workbench', menuName: '工作台', parent: 'app-workbench'},
         redirect: '/workbench/assigned',
-        // component: { template: '<router-view></router-view>' },
         component: WorkbenchIndex,
         children: [
           {
             path: 'assigned',
             //  alias: ['abc'],
             name: 'workbench-assigned',
-            meta: {title: '指给我的', icon: 'at', menuName: '指给我的',parent: 'app-workbench'},
+            meta: {title: '指给我的', icon: 'assign', menuName: '指给我的', parent: 'app-workbench'},
             component: AssignedToMe,
           },
           {
             path: 'create',
             name: 'workbench-me-create',
-            meta: {title: '我提出的', icon: 'plus', menuName: '我提出的',parent: 'app-workbench'},
+            meta: {title: '我提出的', icon: 'add', menuName: '我提出的', parent: 'app-workbench'},
             component: AssignedToMe,
           },
           {
             path: 'follow',
             name: 'workbench-me-follow',
-            meta: {title: '我关注的', icon: 'star', menuName: '我关注的',parent: 'app-workbench'},
+            meta: {title: '我关注的', icon: 'star', menuName: '我关注的', parent: 'app-workbench'},
             component: AssignedToMe,
           },
           {
             path: 'finish',
             name: 'workbench-me-finish',
-            meta: {title: '我完成的', icon: 'document-text', menuName: '我完成的',parent: 'app-workbench'},
+            meta: {title: '我完成的', icon: 'accomplish', menuName: '我完成的', parent: 'app-workbench'},
             component: AssignedToMe,
           }
         ]
@@ -116,20 +115,20 @@ export const appMain = [
       {
         path: '/outline',
         name: 'app-home',
-        meta: {title: '概览', icon: 'navicon-round', menuName: '概览',parent: 'app-home'},
+        meta: {title: '概览', icon: 'home', menuName: '概览', parent: 'app-home'},
         component: Outline
       },
       {
         path: '/tasks',
         name: 'app-tasks',
-        meta: {title: '任务列表', icon: 'document-text', menuName: '任务',parent: 'app-tasks'},
+        meta: {title: '任务列表', icon: 'task', menuName: '任务', parent: 'app-tasks'},
         component: Task
       },
       {
         path: '/setting',
         name: 'app-setting',
         settingMenu: true,
-        meta: {title: '设置', icon: 'document-text', menuName: '设置', parent: 'app-setting'},
+        meta: {title: '设置', icon: 'setting', menuName: '设置', parent: 'app-setting'},
         component: Setting,
         redirect: '/setting/orgInfo',
         children: [
@@ -137,38 +136,38 @@ export const appMain = [
             path: 'orgInfo',  //组织信息
             name: 'app-setting-org-info',
             component: SettingOrgInfo,
-            meta: {title: '团队信息', icon: 'document-text', menuName: '团队信息', parent: 'app-setting'},
+            meta: {title: '团队信息', icon: 'info', menuName: '团队信息', parent: 'app-setting'},
           },
           {
             path: 'projects',
             name: 'app-setting-org-project',
             component: SettingOrgProjects,
-            meta: {title: '团队项目', icon: 'document-text', menuName: '团队项目', parent: 'app-setting'},
+            meta: {title: '团队项目', icon: 'project', menuName: '团队项目', parent: 'app-setting'},
           },
           {
             path: 'users',  //组织信息
             name: 'app-setting-org-user',
             component: SettingOrgUsers,     //SettingOrgRole
-            meta: {title: '团队成员', icon: 'document-text', menuName: '团队成员', parent: 'app-setting'},
+            meta: {title: '团队成员', icon: 'member', menuName: '团队成员', parent: 'app-setting'},
           },
 
           {
             path: 'role',  //组织信息
             name: 'app-setting-org-role',
             component: SettingOrgRole,     //thirdparty
-            meta: {title: '团队角色', icon: 'document-text', menuName: '团队角色', parent: 'app-setting'},
+            meta: {title: '团队角色', icon: 'role', menuName: '团队角色', parent: 'app-setting'},
           },
           {
             path: 'thirdparty',  //组织信息
             name: 'app-setting-org-thirdparty',
-            component: SettingOrgThirdparty,     //thirdparty
-            meta: {title: '第三方数据', icon: 'document-text', menuName: '第三方', parent: 'app-setting'},
+            component: SettingOrgThirdparty,
+            meta: {title: '第三方数据', icon: 'thirdparty', menuName: '第三方', parent: 'app-setting'},
           },
           {
             path: 'advance',  //高级设置
             name: 'app-setting-org-advance',
             component: SettingOrgAdvance,
-            meta: {title: '高级设置', icon: 'document-text', menuName: '高级设置', parent: 'app-setting'},
+            meta: {title: '高级设置', icon: 'warning', menuName: '高级设置', parent: 'app-setting'},
           }
         ]
       },
@@ -183,19 +182,19 @@ export const appMain = [
           {
             path: '/account/info',
             name: 'account-info',
-            meta: {title: '账号信息', icon: 'at', menuName: '账号'},
+            meta: {title: '账号信息', icon: 'userInfo', menuName: '账号'},
             component: AccountInfo,
           },
           {
             path: '/account/setting',
             name: 'account-setting',
-            meta: {title: '账号设置', icon: 'plus', menuName: '设置'},
+            meta: {title: '账号设置', icon: 'setting', menuName: '设置'},
             component: AccountSetting,
           },
           {
             path: '/account/notification',
             name: 'account-notification',
-            meta: {title: '通知提醒', icon: 'plus', menuName: '通知'},
+            meta: {title: '通知提醒', icon: 'notification', menuName: '通知'},
             component: AccountNotification,
           },
         ]
