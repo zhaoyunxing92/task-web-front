@@ -45,7 +45,7 @@ const SettingOrgAdvance = () => import(/* webpackChunkName: "Setting-orgAdvance"
  * 账号信息
  * @constructor
  */
-const Account = () => import(/* webpackChunkName: "account" */'../pages/account/index');
+const Account = () => import(/* webpackChunkName: "account" */'../pages/account/account');
 const AccountInfo = () => import(/* webpackChunkName: "account-info" */'../pages/account/info');
 const AccountSetting = () => import(/* webpackChunkName: "account-setting" */'../pages/account/setting');
 const AccountNotification = () => import(/* webpackChunkName: "account-notification" */'../pages/account/notification');
