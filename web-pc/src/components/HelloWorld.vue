@@ -21,9 +21,9 @@
       <icon type="home"></icon>首页
     </div>
 
-    <icon type="home"></icon>
-    <icon type="home"></icon>
-    <icon type="home"></icon>
+    <!--<icon type="home"></icon>-->
+    <!--<icon type="home"></icon>-->
+    <!--<icon type="home"></icon>-->
   </div>
 </template>
 

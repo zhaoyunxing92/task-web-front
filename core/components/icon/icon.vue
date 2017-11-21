@@ -1,15 +1,13 @@
 <template>
-  <i :class="classes" :style="styles" v-html='svgIcons.home'></i>
+    <i :class="classes" :style="styles" v-html='svgicon'></i>
 </template>
 <script>
   const prefixCls = 'vui-icon';
   import Icons from '../../svg'
-  import oneOf from '../../utils'
   export default {
     name: 'icon',
     data () {
       return {
-        svgIcons: Icons,
         svgicon: '',
       }
     },
@@ -25,7 +23,9 @@
     },
     computed: {
       classes () {
-        return `${prefixCls} ${prefixCls}-${this.type}`;
+        let type = this.type;
+        this.svgicon = Icons[type];
+        return `${prefixCls} ${prefixCls}-${type}`;
       },
       styles () {
         let style = {};
@@ -33,14 +33,13 @@
           style['height'] = `${this.size}px`;
           style['width'] = `${this.size}px`;
         }
-        
+
         if (this.color) {
           style.fill = this.color;
         }
         return style;
       }
     },
-
   };
 </script>
 

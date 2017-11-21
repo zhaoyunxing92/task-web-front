@@ -3,6 +3,6 @@
  * @date : 2017.11.20 10:02
  * @description :
  */
-import Icon from './icon';
+import menu from "./menu";
 
-export default Icon;
+export default menu;

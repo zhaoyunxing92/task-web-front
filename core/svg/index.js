@@ -5,9 +5,10 @@
  */
 import home from "./home-icon";
 import add from "./add-icon";
-
+import star from './stat'
 const svgIcon = {
   home,
-  add
+  add,
+  star
 }
 export default svgIcon;

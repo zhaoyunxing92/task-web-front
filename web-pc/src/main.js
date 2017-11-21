@@ -1,9 +1,14 @@
-import Vue from 'vue'
-import App from './App'
+import Vue from "vue";
+import App from "./App";
+import store from './vuex/store';
 import {routers} from "./router";
 import VueRouter from "vue-router";
-import icon from '../../core/components/icon';
-Vue.component('icon', icon);
+import Icon from "../../core/components/icon";
+import Menu from "../../core/components/menu";
+
+Vue.component('Icon', Icon);
+Vue.component('Menu', Menu);
+
 Vue.config.productionTip = true;
 
 const RouterConfig = {
@@ -11,7 +16,6 @@ const RouterConfig = {
   routes: routers
 };
 Vue.use(VueRouter);
-
 
 
 const router = new VueRouter(RouterConfig);
@@ -25,23 +29,16 @@ router.beforeEach((to, from, next) => {
 router.afterEach(() => {
   window.scrollTo(0, 0);
 });
-// new Vue({
-//   el: '#app',
-//   template: '<App/>',
-//   components: { App }
-// });
+
 new Vue({
   el: '#app',
   router,
-  // store: store,
+   store: store,
   template: '<App/>',
   components: {App},
   mounted () {
-    //this.currentPageName = this.$route.name;
-    // this.$store.commit('initCachepage');
     // 菜单
-   // this.$store.commit('setMenuList');
-    //this.$store.commit('setOpenedList');
+    this.$store.commit('setMenuList');
   },
   watch: {
     // '$route' (to) {

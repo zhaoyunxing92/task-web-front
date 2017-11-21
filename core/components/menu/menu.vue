@@ -1,25 +1,31 @@
 <template>
-     <div class="web-main">
-       <!--头部-->
-       <TaskWebHead/>
-
-       <!--内容-->
-       <router-view/>
-     </div>
+    <div :class="classes">
+        <ul>
+           <icon type="home"></icon>
+        </ul>
+    </div>
 </template>
 <script>
-  import TaskWebHead from '../components/head/index';
+  const prefixCls = 'vui-menu';
+  import oneOf from '../../utils/assets'
+  import Icon from '../icon'
   export default {
-    name: "task-web-main",
+    name: "menu",
     data () {//数据
       return {}
     },
-    components: {TaskWebHead},
     props: {
-      //props 可以是数组或对象，用于接收来自父组件的数据。props 可以是简单的数组，或者使用对象作为替代，对象允许配置高级选项，如类型检测、自定义校验和设置默认值。
+      mode: {
+        type: String,
+        default: 'horizontal'
+      },
+      
     },
+    components: {Icon},
     computed: {
-      //计算属性将被混入到 Vue 实例中。所有 getter 和 setter 的 this 上下文自动地绑定为 Vue 实例。计算属性的结果会被缓存，除非依赖的响应式属性变化才会重新计算。注意，如果实例范畴之外的依赖 (比如非响应式的 not reactive) 是不会触发计算属性更新的。
+      classes () {
+        return `${prefixCls} ${prefixCls}-${this.mode}`;
+      },
     },
     methods: {
       //methods 将被混入到 Vue 实例中。可以直接通过 VM 实例访问这些方法，或者在指令表达式中使用。方法中的 this 自动绑定为 Vue 实例。
