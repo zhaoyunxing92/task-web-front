@@ -58,7 +58,7 @@
       line-height: 50px;
       height: 50px;
       border-bottom: solid 1px #ccc;
-      padding-left: 10px;
+      padding-left: 15px;
       overflow: hidden;
       font-size: 16px;
     }
@@ -68,12 +68,18 @@
       width: 15%;
       float: left;
       border: solid 1px #ccc;
-      text-align: center;
       .card-left-menu { //左边菜单
+        text-align: center;
         li {
           line-height: 50px;
           height: 50px;
-          border-bottom: solid 1px #f1f1f1;
+          > div {
+            height: inherit;
+            line-height: inherit;
+            overflow: hidden;
+            margin: 0 5%;
+            border-bottom: solid 1px #f1f1f1;
+          }
         }
       }
     }

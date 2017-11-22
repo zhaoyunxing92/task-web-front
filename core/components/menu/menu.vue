@@ -1,15 +1,15 @@
 <template>
     <div :class="classes">
-        <ul>
-           <icon type="home"></icon>
-        </ul>
+        <!--<ul>-->
+           <!--<icon type="home"></icon>-->
+        <!--</ul>-->
     </div>
 </template>
 <script>
   const prefixCls = 'vui-menu';
   import Icon from '../icon'
   export default {
-    name: "menu",
+    name: "v-menu",
     data () {//数据
       return {}
     },

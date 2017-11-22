@@ -1,13 +1,16 @@
 import Vue from "vue";
 import App from "./App";
-import store from './vuex/store';
+import store from "./vuex/store";
 import {routers} from "./router";
 import VueRouter from "vue-router";
 import Icon from "../../core/components/icon";
 import Menu from "../../core/components/menu";
+import datePicker from "../../core/components/datepicker";
 
-Vue.component('Icon', Icon);
-Vue.component('Menu', Menu);
+
+Vue.component(Icon.name, Icon);
+Vue.component(Menu.name, Menu);
+Vue.component(datePicker.name, datePicker);
 
 Vue.config.productionTip = true;
 
@@ -33,7 +36,7 @@ router.afterEach(() => {
 new Vue({
   el: '#app',
   router,
-   store: store,
+  store: store,
   template: '<App/>',
   components: {App},
   mounted () {

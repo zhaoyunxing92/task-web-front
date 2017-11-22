@@ -20,6 +20,7 @@ import warning from "./warning";
 import accomplish from "./accomplish";
 import assign from "./assign";
 
+import male from "./iconfont-male";
 const svgIcon = {
   home,
   add,
@@ -36,6 +37,7 @@ const svgIcon = {
   thirdparty,
   warning,
   accomplish,
-  assign
+  assign,
+  male
 };
 export default svgIcon;

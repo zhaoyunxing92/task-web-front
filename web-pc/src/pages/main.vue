@@ -2,7 +2,7 @@
   <div class="web-main">
     <!--头部-->
     <TaskWebHead/>
-
+          <datapicker open="dd"></datapicker>
     <!--内容-->
     <div class="content">
       <router-view/>
@@ -15,7 +15,9 @@
   export default {
     name: "task-web-main",
     data () {//数据
-      return {}
+      return {
+        abc:true,
+      }
     },
     components: {TaskWebHead},
     props: {

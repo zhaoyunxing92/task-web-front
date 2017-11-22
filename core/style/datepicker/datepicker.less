@@ -1,0 +1,94 @@
+/**
+ * @author :  sunny
+ * @date : 2017.11.22 09:58
+ * @description :
+ */
+.vui-datapicker {
+  box-shadow: 2px 2px 8px 2px rgba(128, 128, 128, .3);
+  background-color: #fff;
+  margin: 10px auto;
+  z-index: 999;
+  position: relative;
+  max-width: 300px;
+  width: 100%;
+  //header
+  .vui-datapicker-panel-header {
+    position: absolute;
+    width: 100%;
+    padding: 0 20px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    background-color: @primary-color;
+    color: #fff;
+    box-shadow: 2px 2px 8px 2px rgba(128, 128, 128, .3);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    > .vui-datapicker-panel-btn, .vui-date-panel-curr-month { //前后按钮
+      color: #fff;
+      font-size: 20px;
+      width: 30px;
+      height: inherit;
+      line-height: inherit;
+      cursor: pointer;
+      transition: all .2s ease-in-out;
+      &:hover {
+        transform: scale(1.2); //放大1.2倍
+        color: #ededed;
+      }
+      &.vui-datapicker-panel-prev-btn {
+        float: left;
+      }
+      &.vui-datapicker-panel-next-btn {
+        float: right;
+      }
+    }
+  }
+  //body
+  .vui-datapicker-panel-body {
+    box-shadow: 2px 2px 8px 2px rgba(128, 128, 128, .3);
+    clear: both;
+    width: 100%;
+    position: absolute;
+    padding: 5px 5px;
+    background-color: #fff;
+    top: 50px;
+    & > table {
+      width: 100%;
+      margin: 5px 5px;
+      text-align: center;
+      border-collapse: collapse; //重复边框折叠
+      th {
+        font-size: 12px;
+        height: 50px;
+        line-height: 50px;
+        color: #717171;
+      }
+      td {
+        height: 40px;
+        line-height: 40px;
+        color: #333;
+        & > div {
+          height: 30px;
+          line-height: 30px;
+          width: 30px;
+          transition: all .3s ease-in-out;
+          //&:hover {
+          //  background-color: @link-hover-color;
+          //  border-radius: 100%;
+          //  cursor: pointer;
+          //}
+        }
+        > .active {
+          background-color: @link-active-color;
+          border-radius: 100%;
+          color: #fff;
+        }
+      }
+      & > tbody .ignore { //忽略的样式
+        color: #d5d5d5;
+      }
+    }
+  }
+
+}

@@ -17,8 +17,8 @@
     </div>
 
     <!--个人信息-->
-    <div class="head-info test">
-      <img src="../../assets/img/avatar.jpg">
+    <div class="head-info">
+      <!--<img src="../../assets/img/avatar.jpg">-->
       <!--<icon type="home"></icon>退出-->
     </div>
   </div>

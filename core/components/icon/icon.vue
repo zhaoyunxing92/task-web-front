@@ -17,7 +17,7 @@
       },
       size: {
         type: [Number, String],
-        default: 12
+        default: 14
       },
       color: String
     },

@@ -9,8 +9,11 @@
         <ul>
           <li :class=" $route.name===menu.name?'right-active':'' " @click="goToPath(menu.name)"
               v-for="(menu,index) in $store.state.workbenchMenus" :key="index">
-            <icon :type="menu.icon"></icon>
-            <span class="head-menu-name">{{menu.menuName}}</span>
+            <div>
+              <icon :type="menu.icon"></icon>
+              <span class="head-menu-name">{{menu.menuName}}</span>
+            </div>
+
           </li>
         </ul>
       </div>
