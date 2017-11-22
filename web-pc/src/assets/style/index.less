@@ -47,6 +47,14 @@
       float: right;
       margin-right: 20px;
     }
+    //头部菜单激活样式
+    .active {
+      i {
+        fill: @link-active-color;
+      }
+      color: @link-active-color;
+      border-bottom: solid 2px @link-active-color;
+    }
   }
   //内容
   .content {
@@ -95,23 +103,16 @@
         padding: 10px;
       }
     }
-  }
-  //左边菜单激活样式
-  .right-active {
-    i {
-      fill: @link-active-color;
+    //左边菜单激活样式
+    .right-active {
+      i {
+        fill: @link-active-color;
+      }
+      color: @link-active-color;
+      border-right: solid 3px @link-active-color;
     }
-    color: @link-active-color;
-    border-right: solid 3px @link-active-color;
   }
-  //头部菜单激活样式
-  .active {
-    i {
-      fill: @link-active-color;
-    }
-    color: @link-active-color;
-    border-bottom: solid 2px @link-active-color;
-  }
+
 }
 
 

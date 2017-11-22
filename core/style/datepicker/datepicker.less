@@ -68,7 +68,7 @@
         height: 40px;
         line-height: 40px;
         color: #333;
-        & > div {
+        > div {
           height: 30px;
           line-height: 30px;
           width: 30px;
@@ -85,10 +85,13 @@
           color: #fff;
         }
       }
-      & > tbody .ignore { //忽略的样式
-        color: #d5d5d5;
-      }
     }
+    .current {
+      color: @link-active-color;
+      border-radius: 100%;
+      font-size: 15px;
+    }
+
   }
 
 }

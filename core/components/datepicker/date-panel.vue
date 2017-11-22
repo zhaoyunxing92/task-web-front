@@ -19,9 +19,9 @@
                 </thead>
                 <tbody>
                 <tr v-for="(months,index) in data.days" :key="index">
-                    <td :class="item.currentMonth?'':'ignore'" v-for="(item,index) in months">
+                    <td :class="item.current?'current':''" v-for="(item,index) in months">
                         <div @click="chooseDay(item)" v-if="item.currentMonth"
-                             :class="item.currentDay?'active':''">
+                             :class="item.choose?'active':''">
                             {{item.showDate}}
                         </div>
                     </td>
@@ -115,8 +115,9 @@
           monthData.push({
             showDate: showDate,
             currentMonth: currentMonth === thisMonth,
-            currentDay: currentDate === showDate,
+            current: currentDate === showDate,
             currentYear: currentYear === year,
+            choose: currentDate === showDate//选中的
           });
         }
         for (let i = 0, len = monthData.length; i < len; i += 7) {
@@ -137,11 +138,10 @@
         if (!item.currentMonth) return;
         that.data.days.forEach(key => {
           key.forEach(day => {
-            day.currentDay = false;
+            day.choose = false;
           });
         });
-
-        item.currentDay = true;
+        item.choose = true;
       }
     },
     mounted(){
