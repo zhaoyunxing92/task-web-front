@@ -3,48 +3,50 @@
  * @date : 2017.11.22 09:58
  * @description :
  */
-@vui-datapicker-width: 300px;
-@vui-datapicker-heigth: @vui-datapicker-width+50;
-@vui-datapicker-header-height: 50px; //日期头部高
 @curr-month-font-size: 18px; //显示日期字体大小
+
 @vui-datapicker-but-width: 30px; //前后日期按钮宽
+@vui-datapicker-body-margin: 5px; //日期外边框
 @vui-datapicker-header-height-radius: 8px; //头部圆角
+@vui-base-cell-size: 40px; //每个日期显示大小
+@vui-base-header-height: @vui-base-cell-size + 10; //日期头部高
+@vui-datapicker-width: @vui-base-cell-size * 7 + @vui-datapicker-body-margin * 2; //日期组件宽
+@vui-datapicker-heigth: @vui-datapicker-width + @vui-base-header-height + @vui-datapicker-body-margin * 2;
+
 .vui-datapicker {
-  box-shadow: 2px 2px 8px 2px rgba(128, 128, 128, .3);
-  background-color: #fff;
-  //margin: 50px auto;
-  left: 50%;
-  top: 50%;
- // display: -webkit-flex;
+  max-width: @vui-datapicker-width;
+  width: 100%;
+
+  height: @vui-datapicker-heigth;
   margin-left: @vui-datapicker-width/2*-1;
   margin-top: @vui-datapicker-heigth/2*-1;
-  // z-index: 9999;
   position: absolute;
-  width: @vui-datapicker-width;
-  height: @vui-datapicker-heigth;
+  left: 50%;
+  top: 50%;
+  overflow: hidden;
+  box-shadow: 2px 2px 8px 2px rgba(128, 128, 128, .3);
+  border-top-left-radius: @vui-datapicker-header-height-radius;
+  border-top-right-radius: @vui-datapicker-header-height-radius;
+  background-color: #fff;
   //header
   .vui-datapicker-panel-header {
     //position: absolute;
-    width: 100%;
+    width: @vui-datapicker-width;
     padding: 0 20px;
-    height: @vui-datapicker-header-height;
-    line-height: @vui-datapicker-header-height;
+    height: @vui-base-header-height;
+    line-height: @vui-base-header-height;
     text-align: center;
     background-color: @primary-color;
     color: #fff;
     box-shadow: 2px 2px 8px 2px rgba(128, 128, 128, .3);
-    border-top-left-radius: @vui-datapicker-header-height-radius;
-    border-top-right-radius: @vui-datapicker-header-height-radius;
     > .vui-datapicker-panel-btn { //前后按钮
       color: #fff;
       font-size: 20px;
       width: @vui-datapicker-but-width;
-      height: inherit;
-      line-height: inherit;
       cursor: pointer;
       transition: all .2s ease-in-out;
       &:hover {
-        transform: scale(1.2); //放大1.2倍
+       // transform: scale(1.2); //放大1.2倍
         color: #ededed;
       }
       &.vui-datapicker-panel-prev-btn {
@@ -55,50 +57,40 @@
       }
     }
     > .header-curr-month { //当前月份显示
-      //height: @vui-datapicker-header-height;
-      //line-height: @vui-datapicker-header-height;
-      //border: solid 1px;
       font-size: @curr-month-font-size;
     }
   }
   //body
   .vui-datapicker-panel-body {
-    box-shadow: 2px 2px 8px 2px rgba(128, 128, 128, .3);
-    //clear: both;
-    //width: 100%;
-    //position: absolute;
-    padding: 5px 5px;
-    background-color: #fff;
-    top: @vui-datapicker-header-height;
+    text-align: center;
+    margin: @vui-datapicker-body-margin @vui-datapicker-body-margin;
     & > table {
       width: 100%;
-      margin: 5px 5px;
-      text-align: center;
       border-collapse: collapse; //重复边框折叠
       th {
         font-size: 12px;
-        height: @vui-datapicker-header-height;
-        line-height: @vui-datapicker-header-height;
+        height: @vui-base-cell-size;
+        line-height: @vui-base-cell-size;
         color: #717171;
+        text-align: center;
       }
       td {
-        height: 40px;
-        line-height: 40px;
+        //   border: 1px solid;
+        height: @vui-base-cell-size;
+        line-height: @vui-base-cell-size;
+        width: @vui-base-cell-size;
         color: #333;
+        padding: 3px 3px;
         > div {
-          height: @vui-datapicker-but-width;
-          line-height: @vui-datapicker-but-width;
-          width: 30px;
+          // margin: 5px 5px;
+          height: @vui-base-cell-size - 10;
+          line-height: @vui-base-cell-size - 10;
+          width: @vui-base-cell-size - 10;
           transition: all .3s ease-in-out;
-          //&:hover {
-          //  background-color: @link-hover-color;
-          //  border-radius: 100%;
-          //  cursor: pointer;
-          //}
         }
         > .active {
           background-color: @link-active-color;
-          border-radius: 100%;
+          border-radius: 15px;
           color: #fff;
         }
       }

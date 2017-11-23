@@ -1,7 +1,7 @@
 {
   "name": "task-web-pc",
   "version": "1.0.0",
-  "description": "任务管理界面（pc�(pc))）",
+  "description": "任务管理界面(pc)",
   "author": "sunny <2385585770@qq.com>",
   "private": true,
   "scripts": {
