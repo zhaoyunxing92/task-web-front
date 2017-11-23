@@ -1,56 +1,55 @@
 <template>
-    <div :class="datePanelClassName">
-        <!--头部-->
-        <div :class="headerClassName">
-            <!--上月-->
-            <a href="javascript:void(0);" :class="prevBtnClassName" @click="toggleMonth(-1)">&lt;</a>
-            <!--下月-->
-            <a href="javascript:void(0);" :class="nextBtnClassName" @click="toggleMonth(1)">&gt;</a>
-            <!--当前月份-->
-            <span class="header-curr-month">{{chooseYear}}年{{chooseMonth}}月</span>
+    <div :class="classes">
+        <div class="vui-datapicker">
+            <div class="vui-datapicker-panel-header">
+                <!--上月-->
+                <a href="javascript:void(0);" class="vui-datapicker-panel-btn vui-datapicker-panel-prev-btn"
+                   @click="toggleMonth(-1)">&lt;</a>
+                <!--下月-->
+                <a href="javascript:void(0);" class="vui-datapicker-panel-btn vui-datapicker-panel-next-btn"
+                   @click="toggleMonth(1)">&gt;</a>
+                <!--当前月份-->
+                <span class="header-curr-month">{{chooseYear}}年{{chooseMonth}}月</span>
+            </div>
+            <div class="vui-datapicker-panel-body">
+                <table>
+                    <thead>
+                    <tr>
+                        <th v-for="(head,index) in tableHead" :key="index">{{head}}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="(months,index) in data.days" :key="index">
+                        <td :class="{ 'current':item.current, 'verboten':future && nowDay > item.showDate && nowYear >= item.year && nowMonth >= item.month}"
+                            v-for="(item,index) in months"
+                            :key="index">
+                            <div @click="chooseDay(item)" v-if="item.currentMonth"
+                                 :class="item.choose?'active':''">
+                                {{item.showDate}}
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
 
         </div>
-        <div :class="bodyClassName">
-            <table>
-                <thead>
-                <tr>
-                    <th v-for="(head,index) in tableHead" :key="index">{{head}}</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr v-for="(months,index) in data.days" :key="index">
-                    <td :class="item.current?'current':''" v-for="(item,index) in months" :key="index">
-                        <div @click="chooseDay(item)" v-if="item.currentMonth"
-                             :class="item.choose?'active':''">
-                            {{item.showDate}}
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-
     </div>
-
 </template>
 <script>
-  const prefixCls = "vui-datapicker-panel";
+  const prefixCls = 'vui vui-modal';
   const initData = new Date();  //初始化时间
   export default {
-    name: "vui-data-panel",
-    data() {
-      //数据
+    name: "datepicker",
+    data () {//数据
       return {
-        datePanelClassName: `${prefixCls}`,
-        headerClassName: `${prefixCls}-header`, //头部
-        currMonthClass: `${prefixCls}-curr-month`,
-        bodyClassName: `${prefixCls}-body`, //实体
-        prevBtnClassName: `${prefixCls}-btn ${prefixCls}-prev-btn`, //上个月class name
-        nextBtnClassName: `${prefixCls}-btn ${prefixCls}-next-btn`, //下个月class name
+        nowYear: initData.getFullYear(),
+        nowMonth: initData.getMonth() + 1,
+        nowDay: initData.getDate(),
         chooseYear: "",
         chooseMonth: "",
-        data: {}
-      };
+        data: {},
+      }
     },
     props: {
       startYear: {
@@ -60,19 +59,26 @@
       startMonth: {
         type: [String, Number],
         default: initData.getMonth() + 1
+      },
+      future: { //是否只能选择将来时间
+        type: Boolean,
+        default: false
       }
     },
     computed: {
-      //表格头部名称
       tableHead() {
+        this.getMonthData(this.startYear, this.startMonth);
         return ["一", "二", "三", "四", "五", "六", "日"];
+      },
+      classes() {
+        return `${prefixCls}`;
       }
     },
     methods: {
       getMonthData(year, month) {
         this.chooseYear = year;
         this.chooseMonth = month;
-        
+
         let monts = [],
           monthData = [];
         //本月的第一天 ,周几
@@ -113,12 +119,12 @@
           //存放数据
           monthData.push({
             year: year,
-            month: thisMonth,    //月份
+            month: month,    //月份
             weekDay: i % 7 + 1, //星期
             showDate: showDate,
             currentMonth: thisMonth === month,
             current: currentDate === showDate && thisMonth === currentMonth, //真实的天
-            choose: currentDate === showDate //选中的
+            choose: currentDate === showDate  //选中的
           });
         }
         for (let j = 0, len = monthData.length; j < len; j += 7) {
@@ -131,20 +137,26 @@
           days: monts
         };
       },
-      //选择天
+      //选择天 selectData
       chooseDay(item) {
         let that = this;
-        if (!item.currentMonth) return;
+
+        //防止点击非本月数据(item.currentMonth)
+        if (!item.currentMonth || (that.future && that.nowDay > item.showDate && that.chooseMonth <= that.nowMonth && that.chooseYear <= that.nowYear)) return;
         that.data.days.forEach(key => {
           key.forEach(day => {
             day.choose = false;
           });
+
         });
         item.choose = true;
+        this.$emit("select", item)
       },
       // 切换月份
       toggleMonth(index) {
         let that = this;
+        if (index < 0 && that.future && that.nowMonth > that.chooseMonth + index && that.chooseYear <= that.nowYear) return;
+
         let month = that.chooseMonth += index;
         let year = that.chooseYear;
         if (month <= 0) {
@@ -156,13 +168,6 @@
         }
         that.getMonthData(year, month);
       }
-    },
-    mounted() {
-      this.getMonthData(this.startYear, this.startMonth);
-    },
-    watch: {
-      //一个对象，键是需要观察的表达式，值是对应回调函数。值也可以是方法名，或者包含选项的对象。Vue 实例将会在实例化时调用$watch()，遍历 watch 对象的每一个属性。
     }
-  };
+  }
 </script>
-

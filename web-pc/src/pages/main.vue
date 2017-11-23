@@ -2,7 +2,12 @@
   <div class="web-main">
     <!--头部-->
     <TaskWebHead/>
-          <datapicker open="dd"></datapicker>
+
+    <!--<datepicker future></datepicker>-->
+    <!--<datapicker open="dd"></datapicker>-->
+    <!--<modal>-->
+    <!---->
+    <!--</modal>-->
     <!--内容-->
     <div class="content">
       <router-view/>
@@ -12,11 +17,12 @@
 </template>
 <script>
   import TaskWebHead from '../components/head/index';
+
   export default {
     name: "task-web-main",
     data () {//数据
       return {
-        abc:true,
+        abc: true,
       }
     },
     components: {TaskWebHead},

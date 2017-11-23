@@ -1,0 +1,174 @@
+/**
+ * @author :  sunny
+ * @date : 2017.11.20 00:21
+ * @description :
+ */
+* {
+  box-sizing: border-box;
+}
+*,
+:after,
+:before {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+  background-color: #eee;
+  font-size: 14px;
+}
+ul li {
+  text-align: center;
+  list-style: none;
+}
+.test {
+  border: solid 1px red;
+}
+/*a */
+a {
+  text-decoration: none;
+}
+/**
+禁止选择复制
+ */
+body,
+html,
+div,
+ul,
+li,
+img,
+i,
+span,
+a {
+  user-select: none;
+}
+/*模态内容框背景颜色*/
+/**
+ * @author :  sunny
+ * @date : 2017.11.20 11:36
+ * @description :
+ */
+.vui-icon {
+  display: inline-block;
+  fill: #5c6b77;
+  margin-right: 2px;
+  text-align: center;
+}
+.vui-icon:hover {
+  fill: #6caff5;
+}
+/**
+ * @author :  sunny
+ * @date : 2017.11.20 17:15
+ * @description :   菜单按钮
+ */
+/**
+ * @author :  sunny
+ * @date : 2017.11.22 09:58
+ * @description :
+ */
+.vui-datapicker {
+  max-width: 290px;
+  width: 100%;
+  position: fixed;
+  overflow: hidden;
+  box-shadow: 2px 2px 8px 2px rgba(128, 128, 128, 0.3);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+.vui-datapicker .vui-datapicker-panel-header {
+  width: 290px;
+  padding: 0 20px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  background-color: #2d8cf0;
+  color: #fff;
+  box-shadow: 2px 2px 8px 2px rgba(128, 128, 128, 0.3);
+}
+.vui-datapicker .vui-datapicker-panel-header > .vui-datapicker-panel-btn {
+  color: #fff;
+  font-size: 20px;
+  width: 30px;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+}
+.vui-datapicker .vui-datapicker-panel-header > .vui-datapicker-panel-btn:hover {
+  color: #ededed;
+}
+.vui-datapicker .vui-datapicker-panel-header > .vui-datapicker-panel-btn.vui-datapicker-panel-prev-btn {
+  float: left;
+}
+.vui-datapicker .vui-datapicker-panel-header > .vui-datapicker-panel-btn.vui-datapicker-panel-next-btn {
+  float: right;
+}
+.vui-datapicker .vui-datapicker-panel-header > .header-curr-month {
+  font-size: 18px;
+}
+.vui-datapicker .vui-datapicker-panel-body {
+  text-align: center;
+  background-color: #fff;
+  width: 290px;
+  padding: 5px 5px;
+}
+.vui-datapicker .vui-datapicker-panel-body > table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.vui-datapicker .vui-datapicker-panel-body > table th {
+  font-size: 12px;
+  height: 40px;
+  line-height: 40px;
+  color: #717171;
+  text-align: center;
+}
+.vui-datapicker .vui-datapicker-panel-body > table td {
+  height: 40px;
+  line-height: 40px;
+  width: 40px;
+  color: #333;
+  padding: 3px 3px;
+}
+.vui-datapicker .vui-datapicker-panel-body > table td > div {
+  height: 30px;
+  line-height: 30px;
+  width: 30px;
+}
+.vui-datapicker .vui-datapicker-panel-body > table td > div:hover {
+  cursor: pointer;
+}
+.vui-datapicker .vui-datapicker-panel-body > table td > .active {
+  background-color: #2b85e4;
+  border-radius: 15px;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+.vui-datapicker .vui-datapicker-panel-body .current {
+  color: #2b85e4;
+  font-size: 16px;
+}
+.vui-datapicker .vui-datapicker-panel-body .verboten {
+  color: #D5D5D5;
+}
+/**
+ * @author :  sunny
+ * @date : 2017.11.23 13:25
+ * @description :
+ */
+.vui-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  display: -webkit-flex;
+  /*设置父元素盒子的，这样内部盒子就会水平居中，上下居中。*/
+  -webkit-justify-content: center;
+  /*设置父元素盒子的，这样内部盒子就会水平居中，上下居中。*/
+  -webkit-align-items: center;
+  /*设置父元素盒子的，这样内部盒子就会水平居中，上下居中。*/
+}

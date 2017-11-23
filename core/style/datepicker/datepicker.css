@@ -1,0 +1,89 @@
+/**
+ * @author :  sunny
+ * @date : 2017.11.22 09:58
+ * @description :
+ */
+/*模态内容框背景颜色*/
+.vui-datapicker {
+  max-width: 290px;
+  width: 100%;
+  position: fixed;
+  overflow: hidden;
+  box-shadow: 2px 2px 8px 2px rgba(128, 128, 128, 0.3);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+.vui-datapicker .vui-datapicker-panel-header {
+  width: 290px;
+  padding: 0 20px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  background-color: #2d8cf0;
+  color: #fff;
+  box-shadow: 2px 2px 8px 2px rgba(128, 128, 128, 0.3);
+}
+.vui-datapicker .vui-datapicker-panel-header > .vui-datapicker-panel-btn {
+  color: #fff;
+  font-size: 20px;
+  width: 30px;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+}
+.vui-datapicker .vui-datapicker-panel-header > .vui-datapicker-panel-btn:hover {
+  color: #ededed;
+}
+.vui-datapicker .vui-datapicker-panel-header > .vui-datapicker-panel-btn.vui-datapicker-panel-prev-btn {
+  float: left;
+}
+.vui-datapicker .vui-datapicker-panel-header > .vui-datapicker-panel-btn.vui-datapicker-panel-next-btn {
+  float: right;
+}
+.vui-datapicker .vui-datapicker-panel-header > .header-curr-month {
+  font-size: 18px;
+}
+.vui-datapicker .vui-datapicker-panel-body {
+  text-align: center;
+  background-color: #fff;
+  width: 290px;
+  padding: 5px 5px;
+}
+.vui-datapicker .vui-datapicker-panel-body > table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.vui-datapicker .vui-datapicker-panel-body > table th {
+  font-size: 12px;
+  height: 40px;
+  line-height: 40px;
+  color: #717171;
+  text-align: center;
+}
+.vui-datapicker .vui-datapicker-panel-body > table td {
+  height: 40px;
+  line-height: 40px;
+  width: 40px;
+  color: #333;
+  padding: 3px 3px;
+}
+.vui-datapicker .vui-datapicker-panel-body > table td > div {
+  height: 30px;
+  line-height: 30px;
+  width: 30px;
+}
+.vui-datapicker .vui-datapicker-panel-body > table td > div:hover {
+  cursor: pointer;
+}
+.vui-datapicker .vui-datapicker-panel-body > table td > .active {
+  background-color: #2b85e4;
+  border-radius: 15px;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+.vui-datapicker .vui-datapicker-panel-body .current {
+  color: #2b85e4;
+  font-size: 16px;
+}
+.vui-datapicker .vui-datapicker-panel-body .verboten {
+  color: #D5D5D5;
+}

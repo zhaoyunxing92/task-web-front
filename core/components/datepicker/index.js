@@ -3,6 +3,6 @@
  * @date : 2017.11.22 00:41
  * @description :
  */
-import datepicker from './date-picker.vue';
+import datepicker from './datepicker';
 
 export default datepicker;

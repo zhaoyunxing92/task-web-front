@@ -3,6 +3,8 @@
  * @date : 2017.11.22 09:58
  * @description :
  */
+@import "../../style/custom";
+
 @curr-month-font-size: 18px; //显示日期字体大小
 
 @vui-datapicker-but-width: 30px; //前后日期按钮宽
@@ -11,26 +13,16 @@
 @vui-base-cell-size: 40px; //每个日期显示大小
 @vui-base-header-height: @vui-base-cell-size + 10; //日期头部高
 @vui-datapicker-width: @vui-base-cell-size * 7 + @vui-datapicker-body-margin * 2; //日期组件宽
-@vui-datapicker-heigth: @vui-datapicker-width + @vui-base-header-height + @vui-datapicker-body-margin * 2;
 
 .vui-datapicker {
   max-width: @vui-datapicker-width;
   width: 100%;
-
-  height: @vui-datapicker-heigth;
-  margin-left: @vui-datapicker-width/2*-1;
-  margin-top: @vui-datapicker-heigth/2*-1;
-  position: absolute;
-  left: 50%;
-  top: 50%;
+  position: fixed;
   overflow: hidden;
   box-shadow: 2px 2px 8px 2px rgba(128, 128, 128, .3);
   border-top-left-radius: @vui-datapicker-header-height-radius;
   border-top-right-radius: @vui-datapicker-header-height-radius;
-  background-color: #fff;
-  //header
   .vui-datapicker-panel-header {
-    //position: absolute;
     width: @vui-datapicker-width;
     padding: 0 20px;
     height: @vui-base-header-height;
@@ -44,9 +36,9 @@
       font-size: 20px;
       width: @vui-datapicker-but-width;
       cursor: pointer;
-      transition: all .2s ease-in-out;
+      transition: all .4s ease-in-out;
       &:hover {
-       // transform: scale(1.2); //放大1.2倍
+        // transform: scale(1.2); //放大1.2倍
         color: #ededed;
       }
       &.vui-datapicker-panel-prev-btn {
@@ -63,7 +55,9 @@
   //body
   .vui-datapicker-panel-body {
     text-align: center;
-    margin: @vui-datapicker-body-margin @vui-datapicker-body-margin;
+    background-color:@modal-cont-bgcolor;
+    width: @vui-datapicker-width;
+    padding: @vui-datapicker-body-margin @vui-datapicker-body-margin;
     & > table {
       width: 100%;
       border-collapse: collapse; //重复边框折叠
@@ -75,32 +69,36 @@
         text-align: center;
       }
       td {
-        //   border: 1px solid;
         height: @vui-base-cell-size;
         line-height: @vui-base-cell-size;
         width: @vui-base-cell-size;
         color: #333;
-        padding: 3px 3px;
+        padding: 3px 3px; //小圆圈
         > div {
-          // margin: 5px 5px;
           height: @vui-base-cell-size - 10;
           line-height: @vui-base-cell-size - 10;
           width: @vui-base-cell-size - 10;
-          transition: all .3s ease-in-out;
+          //  transition: all .3s ease-in-out;
+          &:hover {
+            cursor: pointer;
+          }
         }
-        > .active {
+        > .active { //选中天
           background-color: @link-active-color;
           border-radius: 15px;
           color: #fff;
+          transition: all .3s ease-in-out;
         }
       }
     }
-    .current {
+    .current { //当前天
       color: @link-active-color;
-      border-radius: 100%;
-      font-size: 15px;
+      font-size: 16px;
+
     }
-
+    //禁止选择的样式
+    .verboten {
+      color: #D5D5D5;
+    }
   }
-
 }

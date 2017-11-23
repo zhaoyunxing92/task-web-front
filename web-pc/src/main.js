@@ -7,10 +7,10 @@ import Icon from "../../core/components/icon";
 import Menu from "../../core/components/menu";
 import datePicker from "../../core/components/datepicker";
 
-
 Vue.component(Icon.name, Icon);
 Vue.component(Menu.name, Menu);
 Vue.component(datePicker.name, datePicker);
+
 
 Vue.config.productionTip = true;
 
