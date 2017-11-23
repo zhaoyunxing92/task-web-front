@@ -72,8 +72,7 @@
       getMonthData(year, month) {
         this.chooseYear = year;
         this.chooseMonth = month;
-
-        console.log(year, month);
+        
         let monts = [],
           monthData = [];
         //本月的第一天 ,周几
@@ -125,8 +124,7 @@
         for (let j = 0, len = monthData.length; j < len; j += 7) {
           monts.push(monthData.slice(j, j + 7));
         }
-        this.chooseYear = year;
-        this.chooseMonth = month;
+
         this.data = {
           year: year,
           month: month,
