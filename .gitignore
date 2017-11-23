@@ -14,3 +14,4 @@ yarn-error.log*
 *.sln
 /node_modules/
 /web-pc/dist/
+/web-app/
