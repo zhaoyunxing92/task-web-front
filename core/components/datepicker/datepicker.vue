@@ -1,5 +1,5 @@
 <template>
-    <div :class="classes">
+    <div :class="classes" v-if="open">
         <div class="vui-datapicker">
             <div class="vui-datapicker-panel-header">
                 <!--上月-->
@@ -24,7 +24,7 @@
                             v-for="(item,index) in months"
                             :key="index">
                             <div @click="chooseDay(item)" v-if="item.currentMonth"
-                                 :class="item.choose?'active':''">
+                                 :class="{'active':item.choose}">
                                 {{item.showDate}}
                             </div>
                         </td>
@@ -43,31 +43,40 @@
     name: "datepicker",
     data () {//数据
       return {
-        nowYear: initData.getFullYear(),
-        nowMonth: initData.getMonth() + 1,
-        nowDay: initData.getDate(),
         chooseYear: "",
         chooseMonth: "",
         data: {},
       }
     },
     props: {
-      startYear: {
+      open: { //是否显示
+        type: Boolean,
+        default: true
+      },
+      nowYear: {
         type: [String, Number],
         default: initData.getFullYear()
       },
-      startMonth: {
+      nowMonth: {
         type: [String, Number],
-        default: initData.getMonth() + 1
+        default: initData.getMonth() + 2
+      },
+      nowDay: {
+        type: [String, Number],
+        default: initData.getDate()
       },
       future: { //是否只能选择将来时间
+        type: Boolean,
+        default: false
+      },
+      time: { //是否显示选择时间
         type: Boolean,
         default: false
       }
     },
     computed: {
       tableHead() {
-        this.getMonthData(this.startYear, this.startMonth);
+        this.getMonthData(this.nowYear, this.nowMonth, this.nowDay);
         return ["一", "二", "三", "四", "五", "六", "日"];
       },
       classes() {
@@ -75,7 +84,7 @@
       }
     },
     methods: {
-      getMonthData(year, month) {
+      getMonthData(year, month, startDay) {
         this.chooseYear = year;
         this.chooseMonth = month;
 
@@ -124,7 +133,7 @@
             showDate: showDate,
             currentMonth: thisMonth === month,
             current: currentDate === showDate && thisMonth === currentMonth, //真实的天
-            choose: currentDate === showDate  //选中的
+            choose: startDay === showDate  //选中的
           });
         }
         for (let j = 0, len = monthData.length; j < len; j += 7) {
@@ -166,7 +175,7 @@
           month = index;
           year += index;
         }
-        that.getMonthData(year, month);
+        that.getMonthData(year, month, that.nowDay);
       }
     }
   }

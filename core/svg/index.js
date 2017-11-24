@@ -19,6 +19,7 @@ import thirdparty from "./thirdparty";
 import warning from "./warning";
 import accomplish from "./accomplish";
 import assign from "./assign";
+import time from "./time";
 
 import male from "./iconfont-male";
 const svgIcon = {
@@ -38,6 +39,7 @@ const svgIcon = {
   warning,
   accomplish,
   assign,
-  male
+  male,  //男
+  time //时间
 };
 export default svgIcon;
