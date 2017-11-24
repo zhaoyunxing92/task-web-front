@@ -14,6 +14,11 @@
 @vui-base-header-height: @vui-base-cell-size + 10; //日期头部高
 @vui-datapicker-width: @vui-base-cell-size * 7 + @vui-datapicker-body-margin * 2; //日期组件宽
 
+/*body大小*/
+@vui-datapicker-body-size: @vui-datapicker-width;
+
+@vui-datapicker-body-content-size: @vui-base-cell-size*7;
+
 .vui-datapicker {
   max-width: @vui-datapicker-width;
   width: 100%;
@@ -22,6 +27,7 @@
   box-shadow: 2px 2px 8px 2px rgba(128, 128, 128, .3);
   border-top-left-radius: @vui-datapicker-header-height-radius;
   border-top-right-radius: @vui-datapicker-header-height-radius;
+  //header
   .vui-datapicker-panel-header {
     width: @vui-datapicker-width;
     padding: 0 20px;
@@ -30,7 +36,6 @@
     text-align: center;
     background-color: @primary-color;
     color: #fff;
-    box-shadow: 2px 2px 8px 2px rgba(128, 128, 128, .3);
     > .vui-datapicker-panel-btn { //前后按钮
       color: #fff;
       font-size: 20px;
@@ -55,50 +60,95 @@
   //body
   .vui-datapicker-panel-body {
     text-align: center;
-    background-color:@modal-cont-bgcolor;
-    width: @vui-datapicker-width;
+    background-color: @modal-cont-bgcolor;
+    width: @vui-datapicker-body-size;
+    height: @vui-datapicker-body-size;
+    line-height: @vui-datapicker-body-size;
     padding: @vui-datapicker-body-margin @vui-datapicker-body-margin;
-    & > table {
-      width: 100%;
-      border-collapse: collapse; //重复边框折叠
-      th {
-        font-size: 12px;
-        height: @vui-base-cell-size;
-        line-height: @vui-base-cell-size;
-        color: #717171;
-        text-align: center;
-      }
-      td {
-        height: @vui-base-cell-size;
-        line-height: @vui-base-cell-size;
-        width: @vui-base-cell-size;
-        color: #333;
-        padding: 3px 3px; //小圆圈
-        > div {
-          height: @vui-base-cell-size - 10;
-          line-height: @vui-base-cell-size - 10;
-          width: @vui-base-cell-size - 10;
-          //  transition: all .3s ease-in-out;
-          &:hover {
-            cursor: pointer;
+    //日期面板
+    .vui-date-penel {
+      //background-color: #ccc;
+      width: @vui-datapicker-body-content-size;
+      height: @vui-datapicker-body-content-size;
+      & > table {
+        width: 100%;
+        border-collapse: collapse; //重复边框折叠
+        th {
+          font-size: 12px;
+          height: @vui-base-cell-size;
+          line-height: @vui-base-cell-size;
+          color: #717171;
+          text-align: center;
+        }
+        td {
+          height: @vui-base-cell-size;
+          line-height: @vui-base-cell-size;
+          width: @vui-base-cell-size;
+          color: #333;
+         // border: solid 1px;
+          padding: 3px 3px; //小圆圈
+          > div {
+            height: @vui-base-cell-size - 10;
+            line-height: @vui-base-cell-size - 10;
+            width: @vui-base-cell-size - 10;
+            transition: all .2s ease-in-out;
+            &:hover {
+             // background-color: @link-hover-color;
+            //  border-radius: 100%;
+              cursor: pointer;
+            }
+          }
+          > .active { //选中天
+            background-color: @link-active-color;
+            border-radius: 15px;
+            color: #fff;
+            transition: all .3s ease-in-out;
+          }
+
+        }
+        //禁止选择的样式
+        .verboten {
+          color: @verboten-color;
+          > div:hover {
+            background-color: #fff;
+            cursor: not-allowed;
           }
         }
-        > .active { //选中天
-          background-color: @link-active-color;
-          border-radius: 15px;
-          color: #fff;
-          transition: all .3s ease-in-out;
-        }
       }
-    }
-    .current { //当前天
-      color: @link-active-color;
-      font-size: 16px;
+      .current { //当前天
+        color: @link-active-color;
+        font-size: 16px;
+
+      }
 
     }
-    //禁止选择的样式
-    .verboten {
-      color: #D5D5D5;
+  }
+  //foot
+  .vui-datapicker-foot {
+    height: @vui-base-header-height - 10;
+    line-height: @vui-base-header-height - 10;
+    background-color: @modal-cont-bgcolor - 20;
+    padding: 0 15px;
+    //.active { //选中天
+    // // background-color: @link-active-color;
+    // // border-radius: 15px;
+    //  color: @link-active-color !important;
+    //  transition: all .3s ease-in-out;
+    //}
+    > .foot-time-icon { //icon
+      > .vui-icon {
+        background-color: @modal-cont-bgcolor - 20;
+        margin-top: 7px;
+      }
+    }
+    > .foot-btn { //确定  取消
+      float: right;
+      margin: 0 8px;
+      color: #717171;
+      &:hover {
+        cursor: pointer;
+        color: @link-active-color;;
+      }
     }
   }
 }

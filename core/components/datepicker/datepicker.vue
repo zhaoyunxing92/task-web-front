@@ -1,6 +1,7 @@
 <template>
     <div :class="classes" v-if="open">
         <div class="vui-datapicker">
+            <!--头部-->
             <div class="vui-datapicker-panel-header">
                 <!--上月-->
                 <a href="javascript:void(0);" class="vui-datapicker-panel-btn vui-datapicker-panel-prev-btn"
@@ -9,45 +10,52 @@
                 <a href="javascript:void(0);" class="vui-datapicker-panel-btn vui-datapicker-panel-next-btn"
                    @click="toggleMonth(1)">&gt;</a>
                 <!--当前月份-->
-                <span class="header-curr-month">{{chooseYear}}年{{chooseMonth}}月</span>
+                <span class="header-curr-month">{{year}}年{{month | numberFormat }}月{{day | numberFormat}}号</span>
             </div>
+            <!--body-->
             <div class="vui-datapicker-panel-body">
-                <table>
-                    <thead>
-                    <tr>
-                        <th v-for="(head,index) in tableHead" :key="index">{{head}}</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr v-for="(months,index) in data.days" :key="index">
-                        <td :class="{ 'current':item.current, 'verboten':future && nowDay > item.showDate && nowYear >= item.year && nowMonth >= item.month}"
-                            v-for="(item,index) in months"
-                            :key="index">
-                            <div @click="chooseDay(item)" v-if="item.currentMonth"
-                                 :class="{'active':item.choose}">
-                                {{item.showDate}}
-                            </div>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
 
+                <datepenel :nowYear="year" :nowMonth="month" :nowDay="nowDay" :future="futureDate"
+                           @datepenelChange="changeDate"></datepenel>
+                <timepenel v-if="showTime" @timePenelChange="changeTime"></timepenel>
+            </div>
+            <!--底部-->
+            <div class="vui-datapicker-foot">
+                <span class="foot-time-icon" v-if="showTime">
+                    <icon type="time" size="20"></icon>
+                    <span class=" foot-undo-btn">{{hour | numberFormat }}:{{minute | numberFormat }}</span>
+                </span>
+
+                <span class="foot-btn foot-sure-btn">确定</span>
+                <span class="foot-btn foot-undo-btn">取消</span>
+                <span class="foot-btn foot-reset-btn">重置</span>
+                <span class="foot-btn foot-undo-btn" v-if="showTime">返回</span>
+            </div>
         </div>
+
     </div>
 </template>
 <script>
   const prefixCls = 'vui vui-modal';
   const initData = new Date();  //初始化时间
+  import icon from '../icon';
+  import datepenel from './date-penel';
+  import timepenel from './time-panel';
   export default {
     name: "datepicker",
     data () {//数据
       return {
-        chooseYear: "",
-        chooseMonth: "",
-        data: {},
+        classes: `${prefixCls}`,
+        year: "",
+        month: "",
+        day: "",
+        showDay: '',
+        futureDate: false,
+        hour: initData.getHours(),
+        minute: initData.getMinutes()
       }
     },
+    components: {icon, datepenel, timepenel},
     props: {
       open: { //是否显示
         type: Boolean,
@@ -59,7 +67,7 @@
       },
       nowMonth: {
         type: [String, Number],
-        default: initData.getMonth() + 2
+        default: initData.getMonth() + 1
       },
       nowDay: {
         type: [String, Number],
@@ -69,113 +77,66 @@
         type: Boolean,
         default: false
       },
-      time: { //是否显示选择时间
+      showTime: { //是否显示选择时间
         type: Boolean,
-        default: false
+        default: true
       }
     },
-    computed: {
-      tableHead() {
-        this.getMonthData(this.nowYear, this.nowMonth, this.nowDay);
-        return ["一", "二", "三", "四", "五", "六", "日"];
-      },
-      classes() {
-        return `${prefixCls}`;
-      }
+//    computed: {
+//      classes() {
+//        return `${prefixCls}`;
+//      }
+//    },
+    //数据先复制一份
+    created(){
+      this.year = this.nowYear;
+      this.month = this.nowMonth;
+      this.day = this.nowDay;
+      this.futureDate = this.future;
+
     },
     methods: {
-      getMonthData(year, month, startDay) {
-        this.chooseYear = year;
-        this.chooseMonth = month;
-
-        let monts = [],
-          monthData = [];
-        //本月的第一天 ,周几
-        let firstDay = new Date(year, month - 1, 1),
-          firstDayWeekDay = firstDay.getDay();
-        // debugger;
-        if (firstDayWeekDay === 0) firstDayWeekDay = 7; //0=周日
-        //上月最后一天
-        let lastDayOfLastMonth = new Date(year, month - 1, 0),
-          lastDateOfLastMonth = lastDayOfLastMonth.getDate();
-
-        //显示几个上月数据,周一就不需要显示，周日显示六个
-        let preMonthDayCount = firstDayWeekDay - 1;
-        //本月最后一天
-        let lastDay = new Date(year, month, 0),
-          lastDate = lastDay.getDate();
-
-        for (let i = 0; i < 7 * 6; i++) {
-          // 要显示几个上月数据
-          let date = i + 1 - preMonthDayCount,
-            showDate = date,
-            thisMonth = month;
-          if (date <= 0) {
-            // <=0 上个月
-            thisMonth = month - 1;
-            showDate = lastDateOfLastMonth + date;
-          } else if (date > lastDate) {
-            thisMonth = month + 1;
-            showDate = showDate - lastDate;
-          }
-
-          if (thisMonth === 0) thisMonth = 12;
-          if (thisMonth === 13) thisMonth = 1;
-
-          let currentDay = new Date(),
-            currentMonth = currentDay.getMonth() + 1,
-            currentDate = currentDay.getDate();
-          //存放数据
-          monthData.push({
-            year: year,
-            month: month,    //月份
-            weekDay: i % 7 + 1, //星期
-            showDate: showDate,
-            currentMonth: thisMonth === month,
-            current: currentDate === showDate && thisMonth === currentMonth, //真实的天
-            choose: startDay === showDate  //选中的
-          });
-        }
-        for (let j = 0, len = monthData.length; j < len; j += 7) {
-          monts.push(monthData.slice(j, j + 7));
-        }
-
-        this.data = {
-          year: year,
-          month: month,
-          days: monts
-        };
-      },
-      //选择天 selectData
-      chooseDay(item) {
-        let that = this;
-
-        //防止点击非本月数据(item.currentMonth)
-        if (!item.currentMonth || (that.future && that.nowDay > item.showDate && that.chooseMonth <= that.nowMonth && that.chooseYear <= that.nowYear)) return;
-        that.data.days.forEach(key => {
-          key.forEach(day => {
-            day.choose = false;
-          });
-
-        });
-        item.choose = true;
-        this.$emit("select", item)
-      },
       // 切换月份
       toggleMonth(index) {
         let that = this;
-        if (index < 0 && that.future && that.nowMonth > that.chooseMonth + index && that.chooseYear <= that.nowYear) return;
+        let currMonth = that.month + index;
+        if (index < 0 && that.future && currMonth < that.nowMonth && that.year <= that.nowYear) return;
 
-        let month = that.chooseMonth += index;
-        let year = that.chooseYear;
-        if (month <= 0) {
-          month += 12;
-          year += index;
-        } else if (month > 12) {
-          month = index;
-          year += index;
+        if (currMonth === 0) { //上年
+          that.month = 12;
+          that.year += index;
+        } else if (currMonth > 12) {//下年
+          that.month = index;
+          that.year += index;
+        } else {//本年
+          that.month = currMonth;
         }
-        that.getMonthData(year, month, that.nowDay);
+
+      },
+      //改变天
+      changeDate(day){
+        this.day = day;
+      },
+      //修改时间
+      changeTime(){
+
+      },
+      resetDate(showDate){
+
+        // this.day = showDate;
+      },
+      resetTime(){
+        console.log("时间改变");
+      }
+    },
+    filters: {
+      //时间格式化，1=01
+      numberFormat: function (value) {
+        if (value < 10) {
+          return '0' + value
+        }
+        return value
+        // return value * (discount / 100);
       }
     }
   }

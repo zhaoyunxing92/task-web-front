@@ -19,8 +19,6 @@ const RouterConfig = {
   routes: routers
 };
 Vue.use(VueRouter);
-
-
 const router = new VueRouter(RouterConfig);
 
 router.beforeEach((to, from, next) => {
@@ -58,5 +56,6 @@ new Vue({
     //   //   path: 'details'
     //   // });
     // }
-  }
-})
+  },
+
+});
