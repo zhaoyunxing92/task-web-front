@@ -20,6 +20,7 @@ import warning from "./warning";
 import accomplish from "./accomplish";
 import assign from "./assign";
 import time from "./time";
+import prev from "./prev";
 
 import male from "./iconfont-male";
 const svgIcon = {
@@ -40,6 +41,7 @@ const svgIcon = {
   accomplish,
   assign,
   male,  //男
-  time //时间
+  time, //时间
+  prev, //下箭头
 };
 export default svgIcon;

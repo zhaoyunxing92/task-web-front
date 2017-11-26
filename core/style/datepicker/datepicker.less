@@ -6,7 +6,6 @@
 @import "../../style/custom";
 
 @curr-month-font-size: 18px; //显示日期字体大小
-
 @vui-datapicker-but-width: 30px; //前后日期按钮宽
 @vui-datapicker-body-margin: 5px; //日期外边框
 @vui-datapicker-header-height-radius: 8px; //头部圆角
@@ -16,36 +15,29 @@
 
 /*body大小*/
 @vui-datapicker-body-size: @vui-datapicker-width;
-
 @vui-datapicker-body-content-size: @vui-base-cell-size*7;
 
 .vui-datapicker {
-  max-width: @vui-datapicker-width;
-  width: 100%;
-  position: fixed;
   overflow: hidden;
   box-shadow: 2px 2px 8px 2px rgba(128, 128, 128, .3);
-  border-top-left-radius: @vui-datapicker-header-height-radius;
-  border-top-right-radius: @vui-datapicker-header-height-radius;
-  //header
+
   .vui-datapicker-panel-header {
     width: @vui-datapicker-width;
     padding: 0 20px;
+    max-height: 60px;
     height: @vui-base-header-height;
     line-height: @vui-base-header-height;
+    cursor: pointer;
     text-align: center;
     background-color: @primary-color;
+    border-top-left-radius: @vui-datapicker-header-height-radius;
+    border-top-right-radius: @vui-datapicker-header-height-radius;
     color: #fff;
     > .vui-datapicker-panel-btn { //前后按钮
-      color: #fff;
-      font-size: 20px;
       width: @vui-datapicker-but-width;
-      cursor: pointer;
       transition: all .4s ease-in-out;
-      &:hover {
-        // transform: scale(1.2); //放大1.2倍
-        color: #ededed;
-      }
+      color: red;
+      margin: 18px 15px;
       &.vui-datapicker-panel-prev-btn {
         float: left;
       }
@@ -67,11 +59,12 @@
     padding: @vui-datapicker-body-margin @vui-datapicker-body-margin;
     //日期面板
     .vui-date-penel {
-      //background-color: #ccc;
+      // background-color: #ccc;
       width: @vui-datapicker-body-content-size;
       height: @vui-datapicker-body-content-size;
-      & > table {
-        width: 100%;
+      padding-top: -10px;
+      > table.date-table-penel {
+        position: absolute;
         border-collapse: collapse; //重复边框折叠
         th {
           font-size: 12px;
@@ -85,22 +78,20 @@
           line-height: @vui-base-cell-size;
           width: @vui-base-cell-size;
           color: #333;
-         // border: solid 1px;
+          cursor: pointer;
           padding: 3px 3px; //小圆圈
           > div {
             height: @vui-base-cell-size - 10;
             line-height: @vui-base-cell-size - 10;
             width: @vui-base-cell-size - 10;
             transition: all .2s ease-in-out;
-            &:hover {
-             // background-color: @link-hover-color;
-            //  border-radius: 100%;
-              cursor: pointer;
-            }
+            //&:hover {
+            //  cursor: pointer;
+            //}
           }
           > .active { //选中天
             background-color: @link-active-color;
-            border-radius: 15px;
+            border-radius: 100%;
             color: #fff;
             transition: all .3s ease-in-out;
           }
@@ -114,11 +105,89 @@
             cursor: not-allowed;
           }
         }
+
       }
+
       .current { //当前天
         color: @link-active-color;
         font-size: 16px;
 
+      }
+
+    }
+    //时间面板
+    .vui-time-penel {
+      position: absolute;
+      width: @vui-datapicker-body-content-size;
+      height: @vui-datapicker-body-content-size;
+      > .vui-hour { //小时
+        float: left;
+        height: @vui-datapicker-body-content-size+@vui-datapicker-body-margin;
+        width: 50%;
+        border-right: solid 1px #eee;
+      }
+      > .vui-minute { //分钟
+        float: left;
+        margin: 0 20px;
+      }
+      .vui-time-penel-btn {
+        width: 100px;
+        height: 91px;
+        line-height: 91px;
+        background-color: #f9f9f9;
+        margin: 2px auto;
+        > .prev-btn { //上箭头
+          margin-top: 60px;
+        }
+        > .curr-time { //数字
+          font-size: 2rem;
+        }
+      }
+    }
+    //小时&分钟选择面板
+    > div > .hours-minute-table {
+      //  background-color: #eeeeee;
+      width: @vui-datapicker-body-content-size;
+      height: @vui-datapicker-body-content-size;
+      position: absolute;
+      > table {
+        width: @vui-datapicker-body-content-size;
+        height: @vui-datapicker-body-content-size;
+        border-collapse: collapse; //重复边框折叠
+        //小时面板
+        &.hours-table {
+          > tr > td {
+            width: @vui-datapicker-body-content-size/6;
+            line-height: @vui-datapicker-body-content-size/4;
+            height: @vui-datapicker-body-content-size/4;
+          }
+
+        }
+        //分钟面板
+        &.minute-table {
+          > tr > td {
+            width: @vui-datapicker-body-content-size/4;
+            line-height: @vui-datapicker-body-content-size/3;
+            height: @vui-datapicker-body-content-size/3;
+          }
+        }
+        //公用模块
+        > tr > td {
+          cursor: pointer;
+          transition: all .2s ease-in-out;
+          &:hover {
+            color: @link-active-color;
+            transform: scale(1.4);
+          }
+          &.verboten {
+            color: @verboten-color;
+            cursor: not-allowed;
+          }
+          > .current {
+            color: @link-active-color;
+            transform: scale(1.2);
+          }
+        }
       }
 
     }
@@ -129,12 +198,6 @@
     line-height: @vui-base-header-height - 10;
     background-color: @modal-cont-bgcolor - 20;
     padding: 0 15px;
-    //.active { //选中天
-    // // background-color: @link-active-color;
-    // // border-radius: 15px;
-    //  color: @link-active-color !important;
-    //  transition: all .3s ease-in-out;
-    //}
     > .foot-time-icon { //icon
       > .vui-icon {
         background-color: @modal-cont-bgcolor - 20;

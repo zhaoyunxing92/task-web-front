@@ -4,34 +4,29 @@
  * @description :
  */
 /*模态内容框背景颜色*/
+/*body大小*/
 .vui-datapicker {
-  max-width: 290px;
-  width: 100%;
-  position: fixed;
   overflow: hidden;
   box-shadow: 2px 2px 8px 2px rgba(128, 128, 128, 0.3);
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
 }
 .vui-datapicker .vui-datapicker-panel-header {
   width: 290px;
   padding: 0 20px;
+  max-height: 60px;
   height: 50px;
   line-height: 50px;
+  cursor: pointer;
   text-align: center;
   background-color: #2d8cf0;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
   color: #fff;
-  box-shadow: 2px 2px 8px 2px rgba(128, 128, 128, 0.3);
 }
 .vui-datapicker .vui-datapicker-panel-header > .vui-datapicker-panel-btn {
-  color: #fff;
-  font-size: 20px;
   width: 30px;
-  cursor: pointer;
   transition: all 0.4s ease-in-out;
-}
-.vui-datapicker .vui-datapicker-panel-header > .vui-datapicker-panel-btn:hover {
-  color: #ededed;
+  color: red;
+  margin: 18px 15px;
 }
 .vui-datapicker .vui-datapicker-panel-header > .vui-datapicker-panel-btn.vui-datapicker-panel-prev-btn {
   float: left;
@@ -46,44 +41,137 @@
   text-align: center;
   background-color: #fff;
   width: 290px;
+  height: 290px;
+  line-height: 290px;
   padding: 5px 5px;
 }
-.vui-datapicker .vui-datapicker-panel-body > table {
-  width: 100%;
+.vui-datapicker .vui-datapicker-panel-body .vui-date-penel {
+  width: 280px;
+  height: 280px;
+  padding-top: -10px;
+}
+.vui-datapicker .vui-datapicker-panel-body .vui-date-penel > table.date-table-penel {
+  position: absolute;
   border-collapse: collapse;
 }
-.vui-datapicker .vui-datapicker-panel-body > table th {
+.vui-datapicker .vui-datapicker-panel-body .vui-date-penel > table.date-table-penel th {
   font-size: 12px;
   height: 40px;
   line-height: 40px;
   color: #717171;
   text-align: center;
 }
-.vui-datapicker .vui-datapicker-panel-body > table td {
+.vui-datapicker .vui-datapicker-panel-body .vui-date-penel > table.date-table-penel td {
   height: 40px;
   line-height: 40px;
   width: 40px;
   color: #333;
+  cursor: pointer;
   padding: 3px 3px;
 }
-.vui-datapicker .vui-datapicker-panel-body > table td > div {
+.vui-datapicker .vui-datapicker-panel-body .vui-date-penel > table.date-table-penel td > div {
   height: 30px;
   line-height: 30px;
   width: 30px;
+  transition: all 0.2s ease-in-out;
 }
-.vui-datapicker .vui-datapicker-panel-body > table td > div:hover {
-  cursor: pointer;
-}
-.vui-datapicker .vui-datapicker-panel-body > table td > .active {
+.vui-datapicker .vui-datapicker-panel-body .vui-date-penel > table.date-table-penel td > .active {
   background-color: #2b85e4;
-  border-radius: 15px;
+  border-radius: 100%;
   color: #fff;
   transition: all 0.3s ease-in-out;
 }
-.vui-datapicker .vui-datapicker-panel-body .current {
+.vui-datapicker .vui-datapicker-panel-body .vui-date-penel > table.date-table-penel .verboten {
+  color: #cbcbcb;
+}
+.vui-datapicker .vui-datapicker-panel-body .vui-date-penel > table.date-table-penel .verboten > div:hover {
+  background-color: #fff;
+  cursor: not-allowed;
+}
+.vui-datapicker .vui-datapicker-panel-body .vui-date-penel .current {
   color: #2b85e4;
   font-size: 16px;
 }
-.vui-datapicker .vui-datapicker-panel-body .verboten {
-  color: #D5D5D5;
+.vui-datapicker .vui-datapicker-panel-body .vui-time-penel {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+}
+.vui-datapicker .vui-datapicker-panel-body .vui-time-penel > .vui-hour {
+  float: left;
+  height: 285px;
+  width: 50%;
+  border-right: solid 1px #eee;
+}
+.vui-datapicker .vui-datapicker-panel-body .vui-time-penel > .vui-minute {
+  float: left;
+  margin: 0 20px;
+}
+.vui-datapicker .vui-datapicker-panel-body .vui-time-penel .vui-time-penel-btn {
+  width: 100px;
+  height: 91px;
+  line-height: 91px;
+  background-color: #f9f9f9;
+  margin: 2px auto;
+}
+.vui-datapicker .vui-datapicker-panel-body .vui-time-penel .vui-time-penel-btn > .prev-btn {
+  margin-top: 60px;
+}
+.vui-datapicker .vui-datapicker-panel-body .vui-time-penel .vui-time-penel-btn > .curr-time {
+  font-size: 2rem;
+}
+.vui-datapicker .vui-datapicker-panel-body > div > .hours-minute-table {
+  width: 280px;
+  height: 280px;
+  position: absolute;
+}
+.vui-datapicker .vui-datapicker-panel-body > div > .hours-minute-table > table {
+  width: 280px;
+  height: 280px;
+  border-collapse: collapse;
+}
+.vui-datapicker .vui-datapicker-panel-body > div > .hours-minute-table > table.hours-table > tr > td {
+  width: 46.66666667px;
+  line-height: 70px;
+  height: 70px;
+}
+.vui-datapicker .vui-datapicker-panel-body > div > .hours-minute-table > table.minute-table > tr > td {
+  width: 70px;
+  line-height: 93.33333333px;
+  height: 93.33333333px;
+}
+.vui-datapicker .vui-datapicker-panel-body > div > .hours-minute-table > table > tr > td {
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.vui-datapicker .vui-datapicker-panel-body > div > .hours-minute-table > table > tr > td:hover {
+  color: #2b85e4;
+  transform: scale(1.4);
+}
+.vui-datapicker .vui-datapicker-panel-body > div > .hours-minute-table > table > tr > td.verboten {
+  color: #cbcbcb;
+  cursor: not-allowed;
+}
+.vui-datapicker .vui-datapicker-panel-body > div > .hours-minute-table > table > tr > td > .current {
+  color: #2b85e4;
+  transform: scale(1.2);
+}
+.vui-datapicker .vui-datapicker-foot {
+  height: 40px;
+  line-height: 40px;
+  background-color: #ebebeb;
+  padding: 0 15px;
+}
+.vui-datapicker .vui-datapicker-foot > .foot-time-icon > .vui-icon {
+  background-color: #ebebeb;
+  margin-top: 7px;
+}
+.vui-datapicker .vui-datapicker-foot > .foot-btn {
+  float: right;
+  margin: 0 8px;
+  color: #717171;
+}
+.vui-datapicker .vui-datapicker-foot > .foot-btn:hover {
+  cursor: pointer;
+  color: #2b85e4;
 }

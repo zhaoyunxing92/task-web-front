@@ -1,6 +1,6 @@
 <template>
     <div class="vui-date-penel">
-        <table>
+        <table class="date-table-penel">
             <thead>
             <tr>
                 <th v-for="(head,index) in tableHead" :key="index">{{head}}</th>
@@ -23,7 +23,7 @@
     </div>
 </template>
 <script>
-  const initData = new Date();  //初始化时间
+  //const initData = new Date();  //初始化时间
   export default {
     name: "vui-date-penel",
     data () {//数据
@@ -65,7 +65,6 @@
     },
     methods: {
       getMonthData(year, month, startDay) {
-
         let monts = [],
           monthData = [];
         //本月的第一天 ,周几
@@ -107,7 +106,7 @@
           monthData.push({
             year: year,
             month: month,    //月份
-            weekDay: i % 7 + 1, //星期
+          //  weekDay: i % 7 + 1, //星期
             showDate: showDate,
             currentMonth: thisMonth === month,
             current: currentDate === showDate && thisMonth === currentMonth, //真实的天

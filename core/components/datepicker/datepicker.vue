@@ -3,21 +3,29 @@
         <div class="vui-datapicker">
             <!--头部-->
             <div class="vui-datapicker-panel-header">
+
                 <!--上月-->
-                <a href="javascript:void(0);" class="vui-datapicker-panel-btn vui-datapicker-panel-prev-btn"
-                   @click="toggleMonth(-1)">&lt;</a>
+                <div @click="btnChangeMonth(-1)" class="vui-datapicker-panel-btn vui-datapicker-panel-prev-btn">
+                    <icon rotation="90" color="#fff" type="prev"/>
+                </div>
+
                 <!--下月-->
-                <a href="javascript:void(0);" class="vui-datapicker-panel-btn vui-datapicker-panel-next-btn"
-                   @click="toggleMonth(1)">&gt;</a>
+                <div @click="btnChangeMonth(1)" class="vui-datapicker-panel-btn vui-datapicker-panel-next-btn">
+                    <icon rotation="270" color="#fff" type="prev"/>
+                </div>
+
                 <!--当前月份-->
                 <span class="header-curr-month">{{year}}年{{month | numberFormat }}月{{day | numberFormat}}号</span>
             </div>
             <!--body-->
             <div class="vui-datapicker-panel-body">
 
-                <datepenel :nowYear="year" :nowMonth="month" :nowDay="nowDay" :future="futureDate"
+                <datepenel v-if="false" ref="datepenel" :nowYear="year" :nowMonth="month" :nowDay="nowDay"
+                           :future="futureDate"
                            @datepenelChange="changeDate"></datepenel>
-                <timepenel v-if="showTime" @timePenelChange="changeTime"></timepenel>
+
+                <timepenel  ref="timepenel" @timePenelChange="changeTime" :nowHour="hour"
+                           :nowMinute="minute" :future="futureDate"></timepenel>
             </div>
             <!--底部-->
             <div class="vui-datapicker-foot">
@@ -28,7 +36,7 @@
 
                 <span class="foot-btn foot-sure-btn">确定</span>
                 <span class="foot-btn foot-undo-btn">取消</span>
-                <span class="foot-btn foot-reset-btn">重置</span>
+                <span class="foot-btn foot-reset-btn" @click="resetDate">重置</span>
                 <span class="foot-btn foot-undo-btn" v-if="showTime">返回</span>
             </div>
         </div>
@@ -38,7 +46,7 @@
 <script>
   const prefixCls = 'vui vui-modal';
   const initData = new Date();  //初始化时间
-  import icon from '../icon';
+  //import icon from '../icon';
   import datepenel from './date-penel';
   import timepenel from './time-panel';
   export default {
@@ -52,10 +60,11 @@
         showDay: '',
         futureDate: false,
         hour: initData.getHours(),
-        minute: initData.getMinutes()
+        minute: initData.getMinutes(),
+        time: ""
       }
     },
-    components: {icon, datepenel, timepenel},
+    components: {datepenel, timepenel},
     props: {
       open: { //是否显示
         type: Boolean,
@@ -75,31 +84,29 @@
       },
       future: { //是否只能选择将来时间
         type: Boolean,
-        default: false
+        default: true
       },
       showTime: { //是否显示选择时间
         type: Boolean,
         default: true
       }
     },
-//    computed: {
-//      classes() {
-//        return `${prefixCls}`;
-//      }
-//    },
+
     //数据先复制一份
     created(){
       this.year = this.nowYear;
-      this.month = this.nowMonth;
       this.day = this.nowDay;
+      this.month = this.nowMonth;
       this.futureDate = this.future;
+      // this.resetDate();
 
     },
     methods: {
       // 切换月份
-      toggleMonth(index) {
+      btnChangeMonth(index) {
         let that = this;
         let currMonth = that.month + index;
+        console.log(that.year <= that.nowYear)
         if (index < 0 && that.future && currMonth < that.nowMonth && that.year <= that.nowYear) return;
 
         if (currMonth === 0) { //上年
@@ -119,14 +126,18 @@
       },
       //修改时间
       changeTime(){
-
-      },
-      resetDate(showDate){
-
-        // this.day = showDate;
+        console.log("时间改变");
       },
       resetTime(){
-        console.log("时间改变");
+
+      },
+      //重置
+      resetDate(){
+        this.day = this.nowDay;
+        this.month = this.nowMonth;
+        this.year = this.nowYear;
+        this.$refs.datepenel.getMonthData(this.nowYear, this.nowMonth, this.nowDay);
+
       }
     },
     filters: {

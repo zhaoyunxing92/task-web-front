@@ -19,7 +19,8 @@
         type: [Number, String],
         default: 14
       },
-      color: String
+      color: String,
+      rotation: [Number, String]   //旋转
     },
     computed: {
       classes () {
@@ -37,6 +38,12 @@
         if (this.color) {
           style.fill = this.color;
         }
+
+        if (this.rotation) {    //transform-origin: center bottom
+          style['transform'] = `rotate(${this.rotation}deg)`;
+          // style['transform-origin']='50%';
+        }
+
         return style;
       }
     },
