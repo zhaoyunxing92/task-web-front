@@ -106,17 +106,18 @@
         } else if (currHour > 23) {
           that.date.hour = 0;
           that.date.day += index;
-          if (that.date.day > that.nowLastDate.getDate()) {
+          if (that.date.day >= that.nowLastDate.getDate()) {
             that.date.day = 1;
             that.date.month += index;
             if (that.date.month > 12) {
-              that.date.month += index;
+              that.date.month =1;
               that.date.year += index;
             }
           }
         } else {
           that.date.hour = currHour;
         }
+        console.log(JSON.stringify(this.date))
         this.$emit("timePenelChange", this.date);
 
       },
