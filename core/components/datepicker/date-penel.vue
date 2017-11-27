@@ -7,7 +7,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="(months,index) in data.days" :key="index">
+            <tr v-for="(months,index) in data" :key="index">
 
                 <td :class="{ 'current':item.current, 'verboten':future && nowDay > item.showDate  && currMonth >= item.month && currYear >= item.year}"
                     v-for="(item,index) in months"
@@ -30,8 +30,7 @@
       return {
         currYear: "",
         currMonth: "",
-        currDay: "",
-        data: {}
+        currDay: ''
       }
     },
     props: {
@@ -50,7 +49,8 @@
       future: { //是否只能选择将来时间
         type: Boolean
         // default: false
-      }
+      },
+      data: Array
     },
     computed: {
 //      monthData(){
@@ -58,71 +58,11 @@
 //        return this.getMonthData(this.nowYear, this.nowMonth, this.nowDay);
 //      },
       tableHead() {
-
-        this.getMonthData(this.nowYear, this.nowMonth, this.nowDay);
         return ["一", "二", "三", "四", "五", "六", "日"];
       }
     },
     methods: {
-      getMonthData(year, month, startDay) {
-        let monts = [],
-          monthData = [];
-        //本月的第一天 ,周几
-        let firstDay = new Date(year, month - 1, 1),
-          firstDayWeekDay = firstDay.getDay();
-        // debugger;
-        if (firstDayWeekDay === 0) firstDayWeekDay = 7; //0=周日
-        //上月最后一天
-        let lastDayOfLastMonth = new Date(year, month - 1, 0),
-          lastDateOfLastMonth = lastDayOfLastMonth.getDate();
 
-        //显示几个上月数据,周一就不需要显示，周日显示六个
-        let preMonthDayCount = firstDayWeekDay - 1;
-        //本月最后一天
-        let lastDay = new Date(year, month, 0),
-          lastDate = lastDay.getDate();
-
-        for (let i = 0; i < 7 * 6; i++) {
-          // 要显示几个上月数据
-          let date = i + 1 - preMonthDayCount,
-            showDate = date,
-            thisMonth = month;
-          if (date <= 0) {
-            // <=0 上个月
-            thisMonth = month - 1;
-            showDate = lastDateOfLastMonth + date;
-          } else if (date > lastDate) {
-            thisMonth = month + 1;
-            showDate = showDate - lastDate;
-          }
-
-          if (thisMonth === 0) thisMonth = 12;
-          if (thisMonth === 13) thisMonth = 1;
-
-          let currentDay = new Date(),
-            currentMonth = currentDay.getMonth() + 1,
-            currentDate = currentDay.getDate();
-          //存放数据
-          monthData.push({
-            year: year,
-            month: month,    //月份
-          //  weekDay: i % 7 + 1, //星期
-            showDate: showDate,
-            currentMonth: thisMonth === month,
-            current: currentDate === showDate && thisMonth === currentMonth, //真实的天
-            choose: startDay === showDate  //选中的
-          });
-        }
-        for (let j = 0, len = monthData.length; j < len; j += 7) {
-          monts.push(monthData.slice(j, j + 7));
-        }
-
-        this.data = {
-          year: year,
-          month: month,
-          days: monts
-        };
-      },
 
       //
       datepenelChange(day){
@@ -130,7 +70,7 @@
 
         //防止点击非本月数据(day.currentMonth)
         if (!day.currentMonth || (that.future && that.nowDay > day.showDate && day.month <= that.currMonth && day.year <= that.currYear)) return;
-        that.data.days.forEach(key => {
+        that.data.forEach(key => {
           key.forEach(day => {
             day.choose = false;
           });
@@ -146,6 +86,7 @@
       this.currYear = this.nowYear;
       this.currMonth = this.nowMonth;
       this.currDay = this.nowDay;
+      //this.getMonthData(this.nowYear, this.nowMonth, this.nowDay);
     },
   }
 </script>

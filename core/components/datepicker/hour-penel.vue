@@ -1,8 +1,10 @@
 <template>
     <div class="hours-minute-table">
+        <!--{{nowDay[0]}}-->
         <table class="hours-table">
             <tr v-for="(hour,index) in hours" :key="index">
-                <td @click="hourPenelChange(item)" :class="{'verboten':future&&item<nowHour}"
+                <td @click="hourPenelChange(item)"
+                    :class="{'verboten':future&&item<nowHour &&nowDay[0]<=nowDay[1] &&nowMonth[0]<=nowMonth[1] &&nowYear[0]<=nowYear[1]}"
                     v-for="(item,index) in hour" :key="index">
                     <div :class="{'current':item===nowHour}">{{item}}</div>
                 </td>
@@ -24,12 +26,15 @@
       }
     },
     props: {
+      nowYear: Array,
+      nowMonth: Array,
+      nowDay: Array,
       nowHour: [String, Number],
       future: Boolean //是否只能选择将来时间
     },
     methods: {
       hourPenelChange(hour){
-        if (hour < this.nowHour && this.future) return;
+        if (hour < this.nowHour && this.future && this.nowDay[0] <= this.nowDay[1] && this.nowMonth[0] <= this.nowMonth[1] && this.nowYear[0] <= this.nowYear[1]) return;
         this.$emit("hourChange", hour);
       }
     }

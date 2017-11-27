@@ -17,6 +17,8 @@
 @vui-datapicker-body-size: @vui-datapicker-width;
 @vui-datapicker-body-content-size: @vui-base-cell-size*7;
 
+@vui-datapicker-text-color: #717171;
+
 .vui-datapicker {
   overflow: hidden;
   box-shadow: 2px 2px 8px 2px rgba(128, 128, 128, .3);
@@ -36,7 +38,6 @@
     > .vui-datapicker-panel-btn { //前后按钮
       width: @vui-datapicker-but-width;
       transition: all .4s ease-in-out;
-      color: red;
       margin: 18px 15px;
       &.vui-datapicker-panel-prev-btn {
         float: left;
@@ -45,7 +46,8 @@
         float: right;
       }
     }
-    > .header-curr-month { //当前月份显示
+    //当前月份显示
+    > .header-curr-month {
       font-size: @curr-month-font-size;
     }
   }
@@ -70,7 +72,7 @@
           font-size: 12px;
           height: @vui-base-cell-size;
           line-height: @vui-base-cell-size;
-          color: #717171;
+          color: @vui-datapicker-text-color;
           text-align: center;
         }
         td {
@@ -109,9 +111,13 @@
       }
 
       .current { //当前天
-        color: @link-active-color;
-        font-size: 16px;
-
+        > div {
+          //   background-color: red;
+          font-size: 16px;
+          color: @link-active-color;
+         // border: solid 1px @link-active-color;
+         // border-radius: 100%;
+        }
       }
 
     }
@@ -134,7 +140,7 @@
         width: 100px;
         height: 91px;
         line-height: 91px;
-        background-color: #f9f9f9;
+        background-color: #eee;
         margin: 2px auto;
         > .prev-btn { //上箭头
           margin-top: 60px;
@@ -143,12 +149,20 @@
           font-size: 2rem;
         }
       }
+      //上下禁止
+      .verboten {
+        cursor: not-allowed;
+        > .vui-icon-prev {
+          fill: @verboten-color;
+        }
+      }
     }
     //小时&分钟选择面板
     > div > .hours-minute-table {
       //  background-color: #eeeeee;
       width: @vui-datapicker-body-content-size;
       height: @vui-datapicker-body-content-size;
+      line-height: @vui-datapicker-body-content-size;
       position: absolute;
       > table {
         width: @vui-datapicker-body-content-size;
@@ -165,10 +179,14 @@
         }
         //分钟面板
         &.minute-table {
+          height: @vui-datapicker-body-content-size - 40px;
+          line-height: @vui-datapicker-body-content-size - 40px;
+          margin-bottom: 10px;
           > tr > td {
+            //border: solid 1px;
             width: @vui-datapicker-body-content-size/4;
-            line-height: @vui-datapicker-body-content-size/3;
-            height: @vui-datapicker-body-content-size/3;
+            line-height: (@vui-datapicker-body-content-size - 50)/3;
+            height: (@vui-datapicker-body-content-size - 50)/3;
           }
         }
         //公用模块
@@ -189,7 +207,17 @@
           }
         }
       }
-
+      //返回
+      > .go-back {
+        color: @vui-datapicker-text-color;
+        line-height: 30px;
+        height: 30px;
+        border: solid 1px @vui-datapicker-text-color;
+        cursor: pointer;
+        &:hover {
+          color: @link-active-color;
+        }
+      }
     }
   }
   //foot
@@ -198,20 +226,27 @@
     line-height: @vui-base-header-height - 10;
     background-color: @modal-cont-bgcolor - 20;
     padding: 0 15px;
+
     > .foot-time-icon { //icon
+      cursor: pointer;
       > .vui-icon {
-        background-color: @modal-cont-bgcolor - 20;
+        //  background-color: @modal-cont-bgcolor - 20;
         margin-top: 7px;
       }
     }
     > .foot-btn { //确定  取消
       float: right;
       margin: 0 8px;
-      color: #717171;
+      color: @vui-datapicker-text-color;
       &:hover {
         cursor: pointer;
         color: @link-active-color;;
       }
+    }
+    > .curr-time {
+      // padding-top: -10px;
+      //margin: 5px 8px;
+      // background-color: red;
     }
   }
 }

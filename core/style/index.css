@@ -88,7 +88,6 @@ a {
 .vui-datapicker .vui-datapicker-panel-header > .vui-datapicker-panel-btn {
   width: 30px;
   transition: all 0.4s ease-in-out;
-  color: red;
   margin: 18px 15px;
 }
 .vui-datapicker .vui-datapicker-panel-header > .vui-datapicker-panel-btn.vui-datapicker-panel-prev-btn {
@@ -151,9 +150,9 @@ a {
   background-color: #fff;
   cursor: not-allowed;
 }
-.vui-datapicker .vui-datapicker-panel-body .vui-date-penel .current {
-  color: #2b85e4;
+.vui-datapicker .vui-datapicker-panel-body .vui-date-penel .current > div {
   font-size: 16px;
+  color: #2b85e4;
 }
 .vui-datapicker .vui-datapicker-panel-body .vui-time-penel {
   position: absolute;
@@ -174,7 +173,7 @@ a {
   width: 100px;
   height: 91px;
   line-height: 91px;
-  background-color: #f9f9f9;
+  background-color: #eee;
   margin: 2px auto;
 }
 .vui-datapicker .vui-datapicker-panel-body .vui-time-penel .vui-time-penel-btn > .prev-btn {
@@ -183,9 +182,16 @@ a {
 .vui-datapicker .vui-datapicker-panel-body .vui-time-penel .vui-time-penel-btn > .curr-time {
   font-size: 2rem;
 }
+.vui-datapicker .vui-datapicker-panel-body .vui-time-penel .verboten {
+  cursor: not-allowed;
+}
+.vui-datapicker .vui-datapicker-panel-body .vui-time-penel .verboten > .vui-icon-prev {
+  fill: #cbcbcb;
+}
 .vui-datapicker .vui-datapicker-panel-body > div > .hours-minute-table {
   width: 280px;
   height: 280px;
+  line-height: 280px;
   position: absolute;
 }
 .vui-datapicker .vui-datapicker-panel-body > div > .hours-minute-table > table {
@@ -198,10 +204,15 @@ a {
   line-height: 70px;
   height: 70px;
 }
+.vui-datapicker .vui-datapicker-panel-body > div > .hours-minute-table > table.minute-table {
+  height: 240px;
+  line-height: 240px;
+  margin-bottom: 10px;
+}
 .vui-datapicker .vui-datapicker-panel-body > div > .hours-minute-table > table.minute-table > tr > td {
   width: 70px;
-  line-height: 93.33333333px;
-  height: 93.33333333px;
+  line-height: 76.66666667px;
+  height: 76.66666667px;
 }
 .vui-datapicker .vui-datapicker-panel-body > div > .hours-minute-table > table > tr > td {
   cursor: pointer;
@@ -219,14 +230,26 @@ a {
   color: #2b85e4;
   transform: scale(1.2);
 }
+.vui-datapicker .vui-datapicker-panel-body > div > .hours-minute-table > .go-back {
+  color: #717171;
+  line-height: 30px;
+  height: 30px;
+  border: solid 1px #717171;
+  cursor: pointer;
+}
+.vui-datapicker .vui-datapicker-panel-body > div > .hours-minute-table > .go-back:hover {
+  color: #2b85e4;
+}
 .vui-datapicker .vui-datapicker-foot {
   height: 40px;
   line-height: 40px;
   background-color: #ebebeb;
   padding: 0 15px;
 }
+.vui-datapicker .vui-datapicker-foot > .foot-time-icon {
+  cursor: pointer;
+}
 .vui-datapicker .vui-datapicker-foot > .foot-time-icon > .vui-icon {
-  background-color: #ebebeb;
   margin-top: 7px;
 }
 .vui-datapicker .vui-datapicker-foot > .foot-btn {
